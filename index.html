@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal de noticias que conecta tecnología, ciencia, innovación y cultura.">
+    <title>Portal de Noticias, Tecnología y Cultura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+    <header class="cabecera">
+        <div class="cabecera-interior">
+            <a class="logo-container" href="index.html" aria-label="Jóvenes Creativos, ir al inicio">
+                <img src="image ia/logo.png" alt="Logo de la marca" class="imagen-logo" onerror="this.remove()">
+                <span class="marca">Jóvenes Creativos</span>
+            </a>
+            <nav class="menu-principal" aria-label="Principal">
+                <ul>
+                    <li><a href="index.html" class="active" aria-current="page">Inicio</a></li>
+                    <li><a href="noticias.html">Noticias</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido">
+        <section class="bienvenida contenedor">
+            <div class="bienvenida-texto">
+                <h1>Tecnología y cultura, en la misma conversación</h1>
+                <p class="lead">Nuestro Portal nace de una idea de crear un medio digital que vaya más allá de las noticias tradicionales. Nuestro objetivo es conectar tecnología, ciencia, innovación y cultura en un mismo espacio.</p>
+                <div class="acciones">
+                    <a class="boton boton-primario" href="noticias.html">Leer las noticias</a>
+                    <a class="boton boton-secundario" href="#asistente">Preguntar al asistente</a>
+                </div>
+            </div>
+            <div class="duo" aria-hidden="true">
+                <span class="circulo c-tec"></span>
+                <span class="circulo c-cul"></span>
+                <b class="etq etq-tec">Tecnología</b>
+                <b class="etq etq-portal">Portal</b>
+                <b class="etq etq-cul">Cultura</b>
+            </div>
+        </section>
+
+        <section class="por-que franja">
+            <div class="contenedor por-que-grid">
+                <div>
+                    <h2>¿Por qué la creamos?</h2>
+                    <p class="texto-largo">Creemos que atender los cambios tecnológicos también significa comprender cómo transforman la sociedad, nuestra forma de comunicarnos, trabajar, crear y vivir. Por eso contamos tendencias y acontecimientos relevantes desde una mirada cercana, dinámica y accesible.</p>
+                </div>
+                <ul class="pilares">
+                    <li><strong>Tendencias que importan</strong><span>Qué está cambiando y qué significa para la gente.</span></li>
+                    <li><strong>Ciencia e innovación</strong><span>Del laboratorio a la vida cotidiana, sin tecnicismos.</span></li>
+                    <li><strong>Cultura cercana</strong><span>Patrimonio, música y proyectos jóvenes de nuestro entorno.</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="ultimas contenedor" aria-labelledby="titulo-ultimas">
+            <h2 id="titulo-ultimas">Lo que puedes leer hoy</h2>
+            <div class="temas">
+                <div class="tema tema-tec">
+                    <h3>Tecnología</h3>
+                    <ul class="lista-notas" data-lista="Tecnología"></ul>
+                </div>
+                <div class="tema tema-cul">
+                    <h3>Cultura</h3>
+                    <ul class="lista-notas" data-lista="Cultura"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Asistente virtual: responde con las notas publicadas en el portal -->
+        <section class="asistente-ia franja-celeste" id="asistente">
+            <div class="contenedor asistente-grid">
+                <div>
+                    <h2>Asistente Virtual de Noticias (IA)</h2>
+                    <p>Pregúntale a nuestro asistente sobre las tecnologías del MIT o temas culturales del portal. Responde con las notas publicadas aquí.</p>
+                </div>
+                <div class="asistente-panel">
+                    <label for="pregunta-ia">Tu pregunta</label>
+                    <div class="asistente-campo">
+                        <input type="text" id="pregunta-ia" placeholder="Ej: ¿Qué dice sobre las baterías de sodio?" autocomplete="off">
+                        <button type="button" onclick="consultarIA()">Consultar</button>
+                    </div>
+                    <div class="sugerencias" aria-label="Preguntas sugeridas">
+                        <button type="button" class="chip-sugerida" data-pregunta="¿Qué son las baterías de sodio?">Baterías de sodio</button>
+                        <button type="button" class="chip-sugerida" data-pregunta="¿Qué es la edición genética?">Edición genética</button>
+                        <button type="button" class="chip-sugerida" data-pregunta="¿Qué es el Día del Patrimonio?">Día del Patrimonio</button>
+                        <button type="button" class="chip-sugerida" data-pregunta="Homenaje a Rubén Rada">Rubén Rada</button>
+                    </div>
+                    <div id="respuesta-ia" aria-live="polite"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor pie-interior">
+            <p class="pie-marca">Jóvenes Creativos</p>
+            <nav aria-label="Pie de página">
+                <a href="index.html">Inicio</a>
+                <a href="noticias.html">Noticias</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <p class="pie-legal">&copy; 2026 Jóvenes Creativos - Proyecto Final Avanzado</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

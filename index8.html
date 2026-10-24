@@ -1,0 +1,2730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portal de noticias que conecta tecnología, ciencia, innovación y cultura. Catálogo completo, asistente virtual de búsqueda, contacto, panel de administración y apéndice.">
+<title>Jóvenes Creativos · Portal de Noticias, Tecnología y Cultura</title>
+
+<style>
+
+:root{
+  --tinta:#0f1720;
+  --tinta-2:#4a5a6a;
+  --tinta-3:#7a8794;
+  --papel:#fbfaf6;
+  --blanco:#ffffff;
+  --linea:#e4dfd5;
+  --tec:#0b6bcb;
+  --tec-suave:#e9f1fd;
+  --tec-borde:#c9dffa;
+  --cul:#c2410c;
+  --cul-suave:#fdeee2;
+  --cul-borde:#f7d6bd;
+  --radio:18px;
+  --radio-chico:12px;
+  --sombra:0 18px 40px -28px rgba(15,23,32,.45);
+  --sombra-suave:0 8px 24px -18px rgba(15,23,32,.35);
+  --fuente-titulo:Arial, Helvetica, sans-serif;
+  --fuente-texto:Arial, Helvetica, sans-serif;
+  --ancho:1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:96px;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  margin:0;
+  font-family:var(--fuente-texto);
+  font-size:17.5px;
+  line-height:1.68;
+  color:var(--tinta);
+  background:var(--papel);
+}
+
+h1,h2,h3,h4{
+  font-family:var(--fuente-titulo);
+  font-weight:800;
+  line-height:1.12;
+  letter-spacing:-.02em;
+  margin:0 0 .5em;
+}
+
+h1{font-size:clamp(2.1rem,4.6vw,3.4rem)}
+h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+h3{font-size:1.15rem;font-weight:700}
+
+p{margin:0 0 1.1em}
+a{color:var(--tec)}
+img{max-width:100%;height:auto}
+button{font:inherit}
+
+.contenedor{
+  width:100%;
+  max-width:var(--ancho);
+  margin-inline:auto;
+  padding-inline:24px;
+}
+
+.saltar{
+  position:absolute;
+  left:-9999px;
+  top:0;
+  z-index:200;
+  background:var(--tinta);
+  color:#fff;
+  padding:12px 20px;
+  border-radius:0 0 12px 0;
+  font-family:var(--fuente-titulo);
+  text-decoration:none;
+}
+.saltar:focus{left:0}
+
+.visualmente-oculto{
+  position:absolute!important;
+  width:1px;height:1px;
+  padding:0;margin:-1px;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  white-space:nowrap;border:0;
+}
+
+.cabecera{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:rgba(251,250,246,.9);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--linea);
+}
+
+.cabecera-interior{
+  max-width:var(--ancho);
+  margin-inline:auto;
+  padding:10px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo-container{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color:var(--tinta);
+  flex:none;
+  cursor:pointer;
+}
+
+.imagen-logo{
+  width:40px;height:40px;
+  object-fit:contain;
+  border-radius:12px;
+  background:var(--tec-suave);
+  padding:4px;
+}
+
+.marca{
+  font-family:var(--fuente-titulo);
+  font-weight:800;
+  font-size:1.05rem;
+  letter-spacing:-.02em;
+  white-space:nowrap;
+}
+
+.menu-principal ul{
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  gap:2px;
+  margin:0;
+  padding:0;
+}
+
+.menu-principal a{
+  display:block;
+  padding:8px 14px;
+  border-radius:999px;
+  font-family:var(--fuente-titulo);
+  font-size:.9rem;
+  font-weight:500;
+  color:var(--tinta-2);
+  text-decoration:none;
+  transition:background .18s ease,color .18s ease;
+  cursor:pointer;
+}
+
+.menu-principal a:hover{background:rgba(15,23,32,.06);color:var(--tinta)}
+.menu-principal a[aria-current="page"]{background:var(--tinta);color:#fff}
+
+.pagina{
+  display:none;
+  animation:aparecer .4s ease both;
+}
+.pagina.activa{display:block}
+
+.bienvenida{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:clamp(28px,4vw,60px);
+  align-items:center;
+  padding:clamp(48px,7vw,84px) 24px clamp(40px,5vw,64px);
+}
+
+.bienvenida h1{margin-bottom:.45em}
+
+.lead{
+  font-size:1.15rem;
+  color:var(--tinta-2);
+  max-width:56ch;
+}
+
+.acciones{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+
+.boton{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 24px;
+  border-radius:999px;
+  font-family:var(--fuente-titulo);
+  font-weight:700;
+  font-size:.94rem;
+  text-decoration:none;
+  border:1.5px solid transparent;
+  cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+
+.boton-primario{background:var(--tinta);color:#fff}
+.boton-primario:hover{transform:translateY(-2px);box-shadow:var(--sombra);background:#1b2733}
+
+.boton-secundario{background:var(--blanco);color:var(--tinta);border-color:var(--linea)}
+.boton-secundario:hover{transform:translateY(-2px);box-shadow:var(--sombra-suave);border-color:var(--tinta-3)}
+
+.duo{
+  position:relative;
+  min-height:400px;
+  border-radius:28px;
+  border:1px solid var(--linea);
+  background:
+    radial-gradient(circle at 15% 20%,#f4f8fe 0%,transparent 55%),
+    radial-gradient(circle at 85% 80%,#fef6ef 0%,transparent 55%),
+    var(--blanco);
+  overflow:hidden;
+  box-shadow:var(--sombra-suave);
+}
+
+.circulo{
+  position:absolute;
+  border-radius:50%;
+  width:230px;height:230px;
+  mix-blend-mode:multiply;
+  transition:transform .6s ease;
+}
+
+.c-tec{
+  top:60px;left:40px;
+  background:rgba(11,107,203,.42);
+  border:2px solid rgba(11,107,203,.55);
+}
+.c-cul{
+  top:110px;right:40px;
+  background:rgba(194,65,12,.42);
+  border:2px solid rgba(194,65,12,.55);
+}
+
+.interseccion{
+  position:absolute;
+  width:110px;height:110px;
+  border-radius:50%;
+  top:135px;
+  left:calc(50% - 55px);
+  background:radial-gradient(circle,rgba(78,42,88,.45) 0%,rgba(78,42,88,.18) 70%,transparent 100%);
+  border:1px dashed rgba(78,42,88,.45);
+  pointer-events:none;
+  animation:pulso 4s ease-in-out infinite;
+}
+
+@keyframes pulso{
+  0%,100%{transform:scale(1);opacity:.9}
+  50%{transform:scale(1.08);opacity:1}
+}
+
+.etq{
+  position:absolute;
+  font-family:var(--fuente-titulo);
+  font-size:.82rem;
+  font-weight:700;
+  padding:9px 18px;
+  border-radius:999px;
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  box-shadow:var(--sombra-suave);
+  white-space:nowrap;
+  z-index:2;
+}
+
+.etq-tec{top:80px;left:70px;color:var(--tec)}
+.etq-portal{top:50%;left:50%;transform:translate(-50%,-50%);background:var(--tinta);color:#fff;border-color:var(--tinta);z-index:3}
+.etq-cul{bottom:80px;right:70px;color:var(--cul)}
+
+.franja{
+  background:var(--blanco);
+  border-top:1px solid var(--linea);
+  border-bottom:1px solid var(--linea);
+}
+
+.por-que{padding:clamp(48px,6vw,76px) 0}
+
+.por-que-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(28px,4vw,56px);
+  align-items:start;
+}
+
+.texto-largo{color:var(--tinta-2);margin:0}
+
+.pilares{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:12px;
+}
+
+.pilares li{
+  display:grid;
+  gap:3px;
+  background:var(--papel);
+  border:1px solid var(--linea);
+  border-radius:var(--radio-chico);
+  padding:15px 18px;
+}
+
+.pilares strong{font-family:var(--fuente-titulo);font-size:.98rem}
+.pilares span{font-size:.93rem;color:var(--tinta-2);line-height:1.5}
+
+.ultimas{padding:clamp(48px,6vw,76px) 24px}
+.ultimas > h2{margin-bottom:.7em}
+
+.temas{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
+
+.tema{
+  border-radius:22px;
+  padding:26px;
+  border:1px solid var(--linea);
+}
+
+.tema-tec{background:linear-gradient(160deg,var(--tec-suave),#f7fbff);border-color:var(--tec-borde)}
+.tema-cul{background:linear-gradient(160deg,var(--cul-suave),#fffaf6);border-color:var(--cul-borde)}
+
+.tema h3{margin-bottom:14px;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem}
+.tema-tec h3{color:var(--tec)}
+.tema-cul h3{color:var(--cul)}
+
+.lista-notas{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:10px;
+}
+
+.lista-notas a{
+  display:grid;
+  gap:2px;
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:var(--radio-chico);
+  padding:13px 16px;
+  text-decoration:none;
+  color:var(--tinta);
+  transition:transform .16s ease,box-shadow .16s ease;
+  cursor:pointer;
+}
+
+.lista-notas a:hover{transform:translateX(4px);box-shadow:var(--sombra-suave)}
+.lista-notas strong{font-family:var(--fuente-titulo);font-size:.96rem;font-weight:700;line-height:1.3}
+.lista-notas span{font-size:.87rem;color:var(--tinta-2);line-height:1.45}
+
+.seccion-noticias{padding:clamp(44px,5vw,72px) 0;background:var(--papel)}
+
+.titulo-seccion{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:14px;
+  margin-bottom:28px;
+}
+
+.eyebrow{
+  font-family:var(--fuente-titulo);
+  font-size:.74rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  color:var(--tinta-3);
+  display:block;
+  margin-bottom:6px;
+}
+
+.contenedor-noticias-layout{
+  display:grid;
+  grid-template-columns:330px minmax(0,1fr);
+  gap:28px;
+  align-items:start;
+}
+
+.sidebar-noticias{
+  position:sticky;
+  top:96px;
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:var(--sombra-suave);
+}
+
+.sidebar-noticias h2{
+  font-size:1rem;
+  margin-bottom:14px;
+}
+
+#buscador{
+  width:100%;
+  padding:11px 16px;
+  border-radius:999px;
+  border:1px solid var(--linea);
+  background:var(--papel);
+  font-family:var(--fuente-titulo);
+  font-size:.9rem;
+  color:var(--tinta);
+}
+
+#buscador:focus{
+  outline:none;
+  border-color:var(--tec);
+  box-shadow:0 0 0 3px rgba(11,107,203,.14);
+}
+
+.filtros{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:14px 0 16px;
+}
+
+.filtro{
+  border:1px solid var(--linea);
+  background:var(--blanco);
+  color:var(--tinta-2);
+  border-radius:999px;
+  padding:6px 15px;
+  font-family:var(--fuente-titulo);
+  font-size:.82rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .16s ease;
+}
+
+.filtro:hover{border-color:var(--tinta-3);color:var(--tinta)}
+.filtro[aria-pressed="true"]{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+
+.lista-lateral{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:4px;
+  max-height:min(48vh,430px);
+  overflow-y:auto;
+  scrollbar-width:thin;
+}
+
+.lista-lateral a{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:var(--radio-chico);
+  text-decoration:none;
+  color:var(--tinta);
+  font-family:var(--fuente-titulo);
+  font-size:.9rem;
+  line-height:1.3;
+  transition:background .16s ease,color .16s ease;
+  cursor:pointer;
+}
+
+.lista-lateral a:hover{background:var(--papel)}
+.lista-lateral a.activo{background:var(--tinta);color:#fff}
+.lista-lateral a.activo .meta{color:rgba(255,255,255,.7)}
+
+.punto{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--tec);
+  flex:none;
+}
+.punto.cul{background:var(--cul)}
+
+.nombre{flex:1;min-width:0}
+.meta{
+  font-size:.66rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--tinta-3);
+  flex:none;
+}
+
+.sin-resultados{
+  font-size:.9rem;
+  color:var(--tinta-2);
+  margin:16px 0 0;
+  line-height:1.5;
+}
+
+.sin-resultados button{
+  background:none;
+  border:none;
+  padding:0;
+  color:var(--tec);
+  text-decoration:underline;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:inherit;
+}
+
+.visor-noticia{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:22px;
+  padding:clamp(26px,4vw,52px);
+  min-height:520px;
+  box-shadow:var(--sombra-suave);
+}
+
+.bienvenida-visor h1{margin-bottom:.4em}
+.bienvenida-visor p{color:var(--tinta-2);max-width:60ch}
+.bienvenida-visor ul{padding-left:22px;display:grid;gap:8px}
+.bienvenida-visor li{color:var(--tinta-2)}
+.bienvenida-visor a{font-family:var(--fuente-titulo);font-size:.95rem;cursor:pointer}
+.bienvenida-visor.oculta{display:none}
+
+@keyframes aparecer{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
+
+.nota{display:none}
+.nota.activa{display:block;animation:aparecer .4s ease both}
+.nota:focus{outline:none}
+
+.chip{
+  display:inline-block;
+  background:var(--tec-suave);
+  color:var(--tec);
+  border-radius:999px;
+  padding:5px 15px;
+  font-family:var(--fuente-titulo);
+  font-size:.72rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+}
+
+.chip.chip-cul{background:var(--cul-suave);color:var(--cul)}
+
+.nota h1{
+  font-size:clamp(1.55rem,3.2vw,2.35rem);
+  margin:18px 0 10px;
+}
+
+.meta-nota{
+  font-family:var(--fuente-titulo);
+  font-size:.74rem;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--tinta-3);
+  margin:0 0 12px;
+}
+
+.nota .lead{
+  border-left:3px solid var(--tec);
+  padding-left:18px;
+  font-size:1.1rem;
+  max-width:none;
+}
+
+.nota.chip-cul .lead{border-left-color:var(--cul)}
+
+.cuerpo p{margin:0 0 1.05em}
+.cuerpo > p:first-of-type::first-letter{
+  font-family:var(--fuente-titulo);
+  font-weight:800;
+  font-size:3.1rem;
+  float:left;
+  line-height:.82;
+  padding:6px 12px 0 0;
+  color:var(--tec);
+}
+
+.foto{
+  margin:26px 0;
+  border-radius:var(--radio);
+  overflow:hidden;
+  border:1px solid var(--linea);
+  background:var(--papel);
+}
+
+.foto img{
+  display:block;
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+}
+
+.foto-placeholder{
+  display:none;
+  aspect-ratio:16/9;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  text-align:center;
+  padding:20px;
+  color:var(--tinta-2);
+  font-family:var(--fuente-titulo);
+  font-size:.82rem;
+  background:
+    repeating-linear-gradient(45deg,rgba(15,23,32,.028) 0 12px,transparent 12px 24px),
+    var(--papel);
+}
+
+.foto.sin-imagen .foto-placeholder{display:flex}
+.foto-placeholder strong{font-size:.92rem;color:var(--tinta)}
+.foto-placeholder .ph-icono{font-size:1.8rem;opacity:.5}
+
+.pasar{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:14px;
+  margin-top:34px;
+  padding-top:22px;
+  border-top:1px solid var(--linea);
+}
+
+.pasar a{
+  display:grid;
+  gap:2px;
+  text-decoration:none;
+  color:var(--tinta);
+  font-family:var(--fuente-titulo);
+  padding:12px 16px;
+  border-radius:var(--radio-chico);
+  border:1px solid var(--linea);
+  transition:background .16s ease,transform .16s ease;
+  cursor:pointer;
+}
+
+.pasar a:hover{background:var(--papel);transform:translateY(-2px)}
+.pasar small{
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--tinta-3);
+}
+.pasar .sig{margin-left:auto;text-align:right}
+
+.franja-celeste{
+  background:
+    radial-gradient(circle at 12% 0%,#e9f1fd 0%,transparent 55%),
+    radial-gradient(circle at 90% 100%,#f2ecfd 0%,transparent 55%),
+    var(--blanco);
+  border-top:1px solid var(--linea);
+  border-bottom:1px solid var(--linea);
+  padding:clamp(48px,6vw,76px) 0;
+}
+
+.asistente-grid{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:clamp(28px,4vw,56px);
+  align-items:start;
+}
+
+.asistente-grid p{color:var(--tinta-2);max-width:46ch}
+
+.asistente-panel{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:22px;
+  padding:26px;
+  box-shadow:var(--sombra);
+}
+
+.asistente-panel label{
+  display:block;
+  font-family:var(--fuente-titulo);
+  font-size:.82rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--tinta-3);
+  margin-bottom:8px;
+}
+
+.asistente-campo{display:flex;gap:10px;flex-wrap:wrap}
+
+.asistente-campo input{
+  flex:1;
+  min-width:180px;
+  padding:12px 16px;
+  border-radius:999px;
+  border:1px solid var(--linea);
+  background:var(--papel);
+  font-family:var(--fuente-titulo);
+  font-size:.94rem;
+  color:var(--tinta);
+}
+
+.asistente-campo input:focus{
+  outline:none;
+  border-color:var(--tec);
+  box-shadow:0 0 0 3px rgba(11,107,203,.14);
+}
+
+.asistente-campo button{
+  padding:12px 26px;
+  border-radius:999px;
+  border:none;
+  background:var(--tinta);
+  color:#fff;
+  font-family:var(--fuente-titulo);
+  font-weight:700;
+  font-size:.9rem;
+  cursor:pointer;
+  transition:transform .16s ease,background .16s ease;
+}
+.asistente-campo button:hover{transform:translateY(-2px);background:#1b2733}
+
+.sugerencias{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:16px;
+}
+
+.chip-sugerida{
+  border:1px solid var(--linea);
+  background:var(--papel);
+  color:var(--tinta-2);
+  border-radius:999px;
+  padding:7px 15px;
+  font-family:var(--fuente-titulo);
+  font-size:.82rem;
+  cursor:pointer;
+  transition:all .16s ease;
+}
+.chip-sugerida:hover{border-color:var(--tec);color:var(--tec);background:var(--tec-suave)}
+
+#respuesta-ia{margin-top:18px}
+#respuesta-ia:empty{margin:0}
+
+.respuesta{
+  background:var(--papel);
+  border-left:3px solid var(--tec);
+  border-radius:0 var(--radio-chico) var(--radio-chico) 0;
+  padding:18px 20px;
+  animation:aparecer .35s ease both;
+}
+
+.respuesta.cultural{border-left-color:var(--cul)}
+.respuesta h4{font-family:var(--fuente-titulo);font-size:1.02rem;margin:0 0 8px}
+.respuesta p{font-size:.96rem;color:var(--tinta-2);margin:0 0 12px}
+
+.lista-resultados{
+  list-style:none;
+  margin:12px 0 0;
+  padding:0;
+  display:grid;
+  gap:8px;
+}
+
+.lista-resultados li{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:var(--radio-chico);
+  padding:12px 15px;
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+
+.lista-resultados li:hover{transform:translateX(4px);box-shadow:var(--sombra-suave)}
+
+.lista-resultados a{
+  display:grid;
+  gap:3px;
+  text-decoration:none;
+  color:var(--tinta);
+  cursor:pointer;
+}
+
+.lista-resultados strong{
+  font-family:var(--fuente-titulo);
+  font-size:.94rem;
+  font-weight:700;
+  line-height:1.3;
+}
+
+.lista-resultados span{
+  font-size:.85rem;
+  color:var(--tinta-2);
+  line-height:1.45;
+}
+
+.lista-resultados .cat-tag{
+  display:inline-block;
+  font-family:var(--fuente-titulo);
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--tinta-3);
+  margin-bottom:2px;
+}
+
+.aviso{
+  font-size:.94rem;
+  color:var(--tinta-2);
+  background:var(--papel);
+  border:1px dashed var(--linea);
+  border-radius:var(--radio-chico);
+  padding:16px 18px;
+  margin:0;
+}
+
+.contador-res{
+  font-family:var(--fuente-titulo);
+  font-size:.82rem;
+  color:var(--tinta-3);
+  margin:14px 0 0;
+}
+
+.contacto{padding:clamp(48px,6vw,80px) 0}
+
+.contacto-grid{
+  display:grid;
+  grid-template-columns:1fr 1.05fr;
+  gap:clamp(28px,4vw,56px);
+  align-items:start;
+}
+
+.datos-contacto{
+  list-style:none;
+  margin:22px 0 0;
+  padding:0;
+  display:grid;
+  gap:12px;
+}
+
+.datos-contacto li{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:var(--radio-chico);
+  padding:15px 18px;
+}
+
+.icono{
+  flex:none;
+  width:38px;height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:var(--tec-suave);
+  color:var(--tec);
+  font-size:1.05rem;
+}
+.icono.cul{background:var(--cul-suave);color:var(--cul)}
+
+.datos-contacto strong{
+  display:block;
+  font-family:var(--fuente-titulo);
+  font-size:.78rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:var(--tinta-3);
+  margin-bottom:2px;
+}
+
+.datos-contacto span,
+.datos-contacto a{
+  font-family:var(--fuente-titulo);
+  font-size:.95rem;
+  color:var(--tinta);
+  text-decoration:none;
+  line-height:1.45;
+}
+.datos-contacto a:hover{color:var(--tec);text-decoration:underline}
+
+.tarjeta-form{
+  background:var(--blanco);
+  border:1px solid var(--linea);
+  border-radius:22px;
+  padding:clamp(22px,3vw,32px);
+  box-shadow:var(--sombra-suave);
+}
+
+.campo{margin-bottom:16px}
+
+.campo label{
+  display:block;
+  font-family:var(--fuente-titulo);
+  font-size:.82rem;
+  font-weight:600;
+  margin-bottom:6px;
+  color:var(--tinta-2);
+}
+
+.campo input,
+.campo select,
+.campo textarea{
+  width:100%;
+  padding:12px 16px;
+  border-radius:var(--radio-chico);
+  border:1px solid var(--linea);
+  background:var(--papel);
+  font-family:var(--fuente-titulo);
+  font-size:.94rem;
+  color:var(--tinta);
+  transition:border-color .16s ease,box-shadow .16s ease;
+}
+
+.campo textarea{resize:vertical;min-height:130px;line-height:1.6}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus{
+  outline:none;
+  border-color:var(--tec);
+  box-shadow:0 0 0 3px rgba(11,107,203,.14);
+}
+
+.campo-doble{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.consentimiento{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:.86rem;
+  color:var(--tinta-2);
+  font-family:var(--fuente-titulo);
+  line-height:1.45;
+  margin-bottom:18px;
+}
+.consentimiento input{width:auto;margin-top:3px;flex:none}
+
+.mensaje-ok{
+  margin-top:16px;
+  padding:14px 18px;
+  border-radius:var(--radio-chico);
+  background:#e9f7ee;
+  border:1px solid #bde3cb;
+  color:#14532d;
+  font-family:var(--fuente-titulo);
+  font-size:.9rem;
+  animation:aparecer .35s ease both;
+}
+
+.mensaje-error{
+  margin-top:16px;
+  padding:14px 18px;
+  border-radius:var(--radio-chico);
+  background:#fdeceb;
+  border:1px solid #f6c6c2;
+  color:#7f1d1d;
+  font-family:var(--fuente-titulo);
+  font-size:.9rem;
+}
+
+.admin{
+  background:var(--tinta);
+  color:#e8eef5;
+  padding:clamp(48px,6vw,80px) 0;
+  min-height:100vh;
+}
+
+.admin h2,.admin h3{color:#fff}
+.admin .eyebrow{color:#8ea3b8}
+.admin p{color:#a9bccd}
+
+.admin-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:28px;
+  align-items:start;
+  margin-top:28px;
+}
+
+.panel-oscuro{
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:22px;
+  padding:clamp(20px,3vw,28px);
+}
+
+.panel-oscuro h3{
+  font-size:.82rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#93a9be;
+  margin-bottom:18px;
+}
+
+.estadisticas{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:24px;
+}
+
+.estadistica{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radio-chico);
+  padding:16px;
+  text-align:center;
+}
+
+.estadistica b{
+  display:block;
+  font-family:var(--fuente-titulo);
+  font-size:1.7rem;
+  font-weight:800;
+  color:#fff;
+  line-height:1.1;
+}
+
+.estadistica span{
+  font-family:var(--fuente-titulo);
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:#8ea3b8;
+}
+
+.admin .campo label{color:#a9bccd}
+
+.admin .campo input,
+.admin .campo select,
+.admin .campo textarea{
+  background:rgba(255,255,255,.07);
+  border-color:rgba(255,255,255,.16);
+  color:#fff;
+}
+
+.admin .campo input::placeholder,
+.admin .campo textarea::placeholder{color:#7f93a6}
+
+.admin .campo input:focus,
+.admin .campo select:focus,
+.admin .campo textarea:focus{
+  border-color:#5aa4f0;
+  box-shadow:0 0 0 3px rgba(90,164,240,.22);
+}
+
+.admin .campo select option{background:#16202b;color:#fff}
+
+.boton-claro{
+  background:#fff;
+  color:var(--tinta);
+  border:none;
+}
+.boton-claro:hover{background:#dbe7f3;transform:translateY(-2px)}
+
+.boton-fantasma{
+  background:transparent;
+  color:#cfe0ef;
+  border:1px solid rgba(255,255,255,.24);
+}
+.boton-fantasma:hover{background:rgba(255,255,255,.1)}
+
+.tabla-admin{
+  width:100%;
+  border-collapse:collapse;
+  font-family:var(--fuente-titulo);
+  font-size:.86rem;
+}
+
+.tabla-admin th{
+  text-align:left;
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:#8ea3b8;
+  padding:0 10px 10px;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+
+.tabla-admin td{
+  padding:12px 10px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  color:#d5e2ee;
+  vertical-align:middle;
+}
+
+.tabla-admin tr:last-child td{border-bottom:none}
+
+.tabla-admin .vacio{
+  color:#8ea3b8;
+  font-style:italic;
+  padding:18px 10px;
+}
+
+.borrar{
+  background:transparent;
+  border:1px solid rgba(255,120,110,.5);
+  color:#ff9d94;
+  border-radius:999px;
+  padding:4px 12px;
+  font-family:var(--fuente-titulo);
+  font-size:.75rem;
+  cursor:pointer;
+  transition:all .16s ease;
+}
+.borrar:hover{background:rgba(255,120,110,.15)}
+
+.nota-admin{
+  font-family:var(--fuente-titulo);
+  font-size:.82rem;
+  color:#8ea3b8;
+  margin-top:16px;
+  line-height:1.5;
+}
+
+.apendice{
+  padding:clamp(48px,6vw,80px) 0;
+  background:var(--blanco);
+  border-top:1px solid var(--linea);
+}
+
+.apendice-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(28px,4vw,56px);
+  align-items:start;
+  margin-top:28px;
+}
+
+.bloque-apendice{
+  background:var(--papel);
+  border:1px solid var(--linea);
+  border-radius:22px;
+  padding:clamp(20px,3vw,30px);
+}
+
+.bloque-apendice h3{
+  font-size:.82rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--tinta-3);
+  margin-bottom:16px;
+}
+
+.glosario{margin:0}
+.glosario dt{
+  font-family:var(--fuente-titulo);
+  font-weight:700;
+  font-size:.98rem;
+  margin-top:16px;
+}
+.glosario dt:first-child{margin-top:0}
+.glosario dd{
+  margin:4px 0 0;
+  color:var(--tinta-2);
+  font-size:.94rem;
+  line-height:1.55;
+}
+
+.lista-fuentes{
+  margin:0;
+  padding-left:20px;
+  display:grid;
+  gap:12px;
+  color:var(--tinta-2);
+  font-size:.94rem;
+}
+.lista-fuentes li{line-height:1.55}
+.lista-fuentes strong{color:var(--tinta);font-family:var(--fuente-titulo);font-size:.92rem}
+
+.creditos{
+  margin-top:24px;
+  font-size:.92rem;
+  color:var(--tinta-2);
+}
+
+.pie{
+  background:var(--blanco);
+  border-top:1px solid var(--linea);
+  padding:40px 0 28px;
+}
+
+.pie-interior{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.pie-marca{
+  font-family:var(--fuente-titulo);
+  font-weight:800;
+  font-size:1.05rem;
+  margin:0;
+}
+
+.pie nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+}
+
+.pie nav a{
+  font-family:var(--fuente-titulo);
+  font-size:.88rem;
+  color:var(--tinta-2);
+  text-decoration:none;
+  cursor:pointer;
+}
+.pie nav a:hover{color:var(--tec)}
+
+.pie-legal{
+  font-size:.82rem;
+  color:var(--tinta-3);
+  margin:0;
+  font-family:var(--fuente-titulo);
+  width:100%;
+  padding-top:18px;
+  border-top:1px solid var(--linea);
+  margin-top:6px;
+}
+
+@media (max-width:1024px){
+  .contenedor-noticias-layout{grid-template-columns:1fr}
+  .sidebar-noticias{position:static}
+  .lista-lateral{max-height:320px}
+  .admin-grid{grid-template-columns:1fr}
+}
+
+@media (max-width:880px){
+  .bienvenida,
+  .por-que-grid,
+  .asistente-grid,
+  .contacto-grid,
+  .apendice-grid{grid-template-columns:1fr}
+
+  .duo{min-height:320px;order:-1}
+  .circulo{width:170px;height:170px}
+  .c-tec{top:40px;left:20px}
+  .c-cul{top:90px;right:20px}
+  .interseccion{top:105px;width:90px;height:90px;left:calc(50% - 45px)}
+  .etq-tec{top:50px;left:30px}
+  .etq-cul{bottom:50px;right:30px}
+
+  .temas{grid-template-columns:1fr}
+  .estadisticas{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:620px){
+  body{font-size:16.5px}
+  .cabecera-interior{flex-direction:column;align-items:stretch;gap:10px;padding:12px 16px}
+  .logo-container{justify-content:center}
+  .menu-principal ul{justify-content:center}
+  .menu-principal a{padding:7px 11px;font-size:.84rem}
+  .contenedor{padding-inline:16px}
+  .visor-noticia{padding:22px 18px;border-radius:18px}
+  .campo-doble{grid-template-columns:1fr}
+  .cuerpo > p:first-of-type::first-letter{font-size:2.5rem;padding-right:9px}
+  .pasar .sig{text-align:left;margin-left:0}
+  .pasar a{width:100%}
+
+  .duo{min-height:260px}
+  .circulo{width:130px;height:130px}
+  .c-tec{top:30px;left:14px}
+  .c-cul{top:70px;right:14px}
+  .interseccion{top:80px;width:70px;height:70px;left:calc(50% - 35px)}
+  .etq{font-size:.72rem;padding:7px 13px}
+  .etq-tec{top:36px;left:20px}
+  .etq-cul{bottom:36px;right:20px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .interseccion{animation:none}
+}
+</style>
+</head>
+
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="cabecera">
+  <div class="cabecera-interior">
+    <a class="logo-container" data-pagina="inicio" aria-label="Jóvenes Creativos, ir al inicio">
+  <span class="marca">Jóvenes Creativos</span>
+</a>
+
+    <nav class="menu-principal" aria-label="Principal">
+      <ul>
+        <li><a data-pagina="inicio" data-nav="inicio" aria-current="page">Inicio</a></li>
+        <li><a data-pagina="noticias" data-nav="noticias">Noticias</a></li>
+        <li><a data-pagina="asistente" data-nav="asistente">Asistente</a></li>
+        <li><a data-pagina="contacto" data-nav="contacto">Contacto</a></li>
+        <li><a data-pagina="admin" data-nav="admin">Admin</a></li>
+        <li><a data-pagina="apendice" data-nav="apendice">Apéndice</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <div class="pagina activa" id="pagina-inicio">
+
+    <section class="bienvenida contenedor">
+      <div class="bienvenida-texto">
+        <span class="eyebrow">Portal digital · Edición 2026</span>
+        <h1>Tecnología y cultura, en la misma conversación</h1>
+        <p class="lead">
+          Nuestro portal nace de la idea de crear un medio digital que vaya más allá de las noticias
+          tradicionales. El objetivo es conectar tecnología, ciencia, innovación y cultura en un mismo espacio,
+          con una mirada cercana, dinámica y accesible.
+        </p>
+        <div class="acciones">
+          <a class="boton boton-primario" data-pagina="noticias">Leer las noticias</a>
+          <a class="boton boton-secundario" data-pagina="asistente">Preguntar al asistente</a>
+        </div>
+      </div>
+
+      <div class="duo" aria-hidden="true">
+        <span class="circulo c-tec"></span>
+        <span class="circulo c-cul"></span>
+        <span class="interseccion"></span>
+        <b class="etq etq-tec">Tecnología</b>
+        <b class="etq etq-portal">Portal</b>
+        <b class="etq etq-cul">Cultura</b>
+      </div>
+    </section>
+
+    <section class="por-que franja">
+      <div class="contenedor por-que-grid">
+        <div>
+          <span class="eyebrow">Nuestra mirada</span>
+          <h2>¿Por qué la creamos?</h2>
+          <p class="texto-largo">
+            Creemos que atender los cambios tecnológicos también significa comprender cómo transforman la sociedad,
+            nuestra forma de comunicarnos, trabajar, crear y vivir. Por eso contamos tendencias y acontecimientos
+            relevantes desde una mirada cercana, dinámica y accesible.
+          </p>
+        </div>
+
+        <ul class="pilares">
+          <li>
+            <strong>Tendencias que importan</strong>
+            <span>Proyecto final avanzado. Qué está cambiando y qué significa para la gente.</span>
+          </li>
+          <li>
+            <strong>Ciencia e innovación</strong>
+            <span>Del laboratorio a la vida cotidiana, sin tecnicismos.</span>
+          </li>
+          <li>
+            <strong>Cultura cercana</strong>
+            <span>Patrimonio, música y proyectos jóvenes de nuestro entorno.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ultimas contenedor" aria-labelledby="titulo-ultimas">
+      <span class="eyebrow">Selección del día</span>
+      <h2 id="titulo-ultimas">Lo que puedes leer hoy</h2>
+
+      <div class="temas">
+        <div class="tema tema-tec">
+          <h3>Tecnología</h3>
+          <ul class="lista-notas" data-lista="Tecnología"></ul>
+        </div>
+        <div class="tema tema-cul">
+          <h3>Cultura</h3>
+          <ul class="lista-notas" data-lista="Cultura"></ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <div class="pagina" id="pagina-noticias">
+    <section class="seccion-noticias">
+      <div class="contenedor">
+        <div class="titulo-seccion">
+          <div>
+            <span class="eyebrow">Catálogo completo</span>
+            <h2>Portal de Noticias</h2>
+          </div>
+        </div>
+
+        <div class="contenedor-noticias-layout">
+
+          <aside class="sidebar-noticias" aria-label="Listado de noticias">
+            <h2>Categorías y noticias</h2>
+
+            <label class="visualmente-oculto" for="buscador">Buscar una noticia</label>
+            <input type="search" id="buscador" placeholder="Buscar una noticia…" autocomplete="off">
+
+            <div class="filtros" role="group" aria-label="Filtrar por categoría">
+              <button type="button" class="filtro" data-filtro="todas" aria-pressed="true">Todas</button>
+              <button type="button" class="filtro" data-filtro="Tecnología" aria-pressed="false">Tecnología</button>
+              <button type="button" class="filtro" data-filtro="Cultura" aria-pressed="false">Cultura</button>
+            </div>
+
+            <ul id="lista-noticias" class="lista-lateral">
+              <li data-cat="Tecnología" data-tags="MIT Technology Review tecnologías 2026 SXSW innovación disruptivas Austin">
+                <a data-id="n1"><span class="punto" aria-hidden="true"></span><span class="nombre">MIT: Tecnologías 2026</span><span class="meta">Tecnología</span></a>
+              </li>
+              <li data-cat="Tecnología" data-tags="baterías sodio litio energía almacenamiento renovables estado sólido vehículos eléctricos">
+                <a data-id="n2"><span class="punto" aria-hidden="true"></span><span class="nombre">Baterías de Sodio</span><span class="meta">Tecnología</span></a>
+              </li>
+              <li data-cat="Tecnología" data-tags="edición genética base editing ADN genes medicina de precisión terapia embriones bioética salud">
+                <a data-id="n3"><span class="punto" aria-hidden="true"></span><span class="nombre">Edición Genética</span><span class="meta">Tecnología</span></a>
+              </li>
+              <li data-cat="Tecnología" data-tags="IA inteligencia artificial software programación código centros de datos testing hiperescala">
+                <a data-id="n4"><span class="punto" aria-hidden="true"></span><span class="nombre">IA en Software</span><span class="meta">Tecnología</span></a>
+              </li>
+              <li data-cat="Tecnología" data-tags="espacio estaciones espaciales órbita captura de carbono CO2 clima sostenibilidad turismo espacial">
+                <a data-id="n5"><span class="punto" aria-hidden="true"></span><span class="nombre">Estaciones Espaciales</span><span class="meta">Tecnología</span></a>
+              </li>
+              <li data-cat="Cultura" data-tags="patrimonio día del patrimonio bicentenario 2025 historia Uruguay museos identidad">
+                <a data-id="n6"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Día del Patrimonio 2025</span><span class="meta">Cultura</span></a>
+              </li>
+              <li data-cat="Cultura" data-tags="Sanguinetti Memorias de una pasión libro arte Iturria Ahunchain Sala Azul Intendencia">
+                <a data-id="n7"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Libro Sanguinetti</span><span class="meta">Cultura</span></a>
+              </li>
+              <li data-cat="Cultura" data-tags="Bellas Artes imputación injuria MEC justicia Wainstein profesor incitación al odio">
+                <a data-id="n8"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Imputación Bellas Artes</span><span class="meta">Cultura</span></a>
+              </li>
+              <li data-cat="Cultura" data-tags="Movida Joven jóvenes artistas inscripciones convocatoria categorías arte">
+                <a data-id="n9"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Movida Joven</span><span class="meta">Cultura</span></a>
+              </li>
+              <li data-cat="Cultura" data-tags="Rubén Rada El Negro música candombe homenaje El Kinto Tótem OPA legado">
+                <a data-id="n10"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Homenaje a Rubén Rada</span><span class="meta">Cultura</span></a>
+              </li>
+            </ul>
+
+            <p id="sin-resultados" class="sin-resultados" hidden>
+              No hay noticias con esa búsqueda. Probá con otra palabra o
+              <button type="button" id="limpiar-filtros">mostrá todas</button>.
+            </p>
+          </aside>
+          <div id="contenido-noticia" class="visor-noticia">
+
+            <section id="bienvenida-visor" class="bienvenida-visor">
+              <h1>Portal de Noticias</h1>
+              <p>
+                Seleccioná una noticia del menú lateral para leer el artículo completo. Si no sabés por dónde
+                empezar, probá con una de estas:
+              </p>
+              <ul>
+                <li><a data-id="n1">El MIT Technology Review anticipa las tecnologías que transformarán los próximos años</a></li>
+                <li><a data-id="n2">Las baterías de sodio buscan desafiar el dominio del litio</a></li>
+                <li><a data-id="n6">Día del Patrimonio 2025: el bicentenario como eje de la celebración</a></li>
+                <li><a data-id="n10">Homenaje a Rubén Rada: el legado del Negro en la música uruguaya</a></li>
+              </ul>
+            </section>
+
+            <article class="nota" id="n1" tabindex="-1">
+              <span class="chip">Tecnología</span>
+              <h1>El MIT Technology Review anticipa las tecnologías que transformarán los próximos años</h1>
+              <p class="meta-nota">Innovación · Publicado el 12 de marzo de 2026</p>
+              <p class="lead">
+                La lista de 2026 pone el foco en infraestructuras de gran escala, nuevas fuentes de energía,
+                medicina de precisión y debates éticos.
+              </p>
+
+           <figure class="foto">
+  <img src="Imágenes/Feriaconseñoryunrobot.jpeg"
+       alt="Señor junto a un robot en una feria de tecnologías disruptivas de 2026"
+       loading="lazy"
+       onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+  <figcaption class="foto-placeholder">
+    <span class="ph-icono">🖼</span>
+    <strong>Espacio reservado para la imagen</strong>
+    <span>Imagenes/Feriaconseñoryunrobot.jpeg · 1200 × 675 px</span>
+  </figcaption>
+</figure>
+
+              <div class="cuerpo">
+                <p>El MIT Technology Review presentó su esperada selección de las diez tecnologías más disruptivas de 2026. El anuncio se realizó el martes 10 de marzo durante el festival SXSW, en Austin, Estados Unidos, uno de los principales encuentros internacionales dedicados a la tecnología, la innovación, el cine, la música y la cultura.</p>
+                <p>La lista de este año marca un cambio significativo respecto de ediciones anteriores. Aunque la inteligencia artificial continúa ocupando un lugar central, el análisis pone especial énfasis en infraestructuras de gran escala, nuevas fuentes de energía, medicina de precisión y tecnologías que plantean importantes debates éticos.</p>
+                <p>Entre los avances destacados aparecen las baterías de sodio, los reactores nucleares modulares, la edición genética de precisión, los centros de datos diseñados para inteligencia artificial y las estaciones espaciales comerciales. También se incluyen los sistemas de captura de carbono y los llamados compañeros de inteligencia artificial, capaces de mantener conversaciones y ofrecer apoyo emocional.</p>
+                <p>Según los editores de MIT Technology Review, la lista no busca simplemente anticipar tendencias, sino identificar desarrollos que ya alcanzaron la madurez suficiente para producir efectos concretos en la economía, la ciencia y la vida cotidiana.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="sig" data-id="n2"><small>Siguiente</small><strong>Baterías de Sodio</strong></a>
+              </nav>
+            </article>
+
+            <article class="nota" id="n2" tabindex="-1">
+              <span class="chip">Tecnología</span>
+              <h1>Las baterías de sodio buscan desafiar el dominio del litio</h1>
+              <p class="meta-nota">Innovación y energía</p>
+              <p class="lead">
+                Más abundante y barato que el litio, el sodio puede abaratar el almacenamiento de energía
+                a gran escala.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Nube.jpeg" alt="Imagen de la noticia sobre las baterías de sodio" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-2.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>Las baterías de sodio se convirtieron en una de las principales novedades de la lista de tecnologías disruptivas elaborada por el MIT Technology Review para 2026. El desarrollo es observado con especial interés porque podría reducir la dependencia mundial del litio, un recurso estratégico cuya demanda aumentó debido a la expansión de los vehículos eléctricos y las energías renovables.</p>
+                <p>El sodio presenta una ventaja fundamental: es mucho más abundante y, en general, menos costoso que el litio. Esta característica podría facilitar la fabricación de baterías destinadas al almacenamiento de electricidad a gran escala, especialmente en sistemas vinculados con parques solares y eólicos. Además, este tipo de baterías ofrece un desempeño potencialmente más estable en temperaturas extremas y puede presentar mejores condiciones de seguridad en determinadas aplicaciones.</p>
+                <p>Aunque todavía enfrenta desafíos relacionados con la densidad energética y la eficiencia, los avances recientes acercan la tecnología a una utilización comercial más amplia.</p>
+                <p>El informe también destaca las baterías de estado sólido, que reemplazan los electrolitos líquidos por materiales sólidos. Esta innovación promete reducir riesgos de incendio, aumentar la autonomía y permitir cargas más rápidas. La combinación de ambas tecnologías podría modificar la estructura del mercado energético y acelerar la transición hacia sistemas de transporte y almacenamiento menos dependientes de combustibles fósiles.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n1"><small>Anterior</small><strong>MIT: Tecnologías 2026</strong></a>
+                <a class="sig" data-id="n3"><small>Siguiente</small><strong>Edición Genética</strong></a>
+              </nav>
+            </article>
+            <article class="nota" id="n3" tabindex="-1">
+              <span class="chip">Tecnología</span>
+              <h1>La medicina de precisión y la edición genética abren nuevas posibilidades</h1>
+              <p class="meta-nota">Salud y bioética</p>
+              <p class="lead">
+                El «base editing» permite corregir mutaciones puntuales del ADN, pero también plantea
+                debates éticos de fondo.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Aplicaciones.jpeg" alt="Imagen de la noticia sobre medicina de precisión y edición genética" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-3.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>La medicina de precisión ocupa un lugar destacado entre las tecnologías que podrían generar mayores cambios durante los próximos años. El MIT Technology Review señaló especialmente los tratamientos genéticos hiperpersonalizados basados en técnicas como el «base editing», una herramienta capaz de modificar una letra específica del ADN. A diferencia de métodos anteriores, esta tecnología busca corregir mutaciones puntuales sin alterar grandes segmentos del material genético.</p>
+                <p>El objetivo es tratar enfermedades hereditarias poco frecuentes que, hasta hace pocos años, contaban con escasas alternativas terapéuticas. El avance abre la posibilidad de desarrollar tratamientos adaptados al perfil genético y molecular de cada paciente. En lugar de utilizar medicamentos diseñados para grandes grupos de población, la medicina podría avanzar hacia terapias específicas para determinadas mutaciones y características biológicas.</p>
+                <p>Sin embargo, el progreso científico también plantea interrogantes de gran importancia. El informe menciona la puntuación de embriones, una técnica que utiliza información genética para estimar riesgos de enfermedades y ciertos rasgos complejos. Sus posibles aplicaciones generan preocupación por la discriminación, la desigualdad en el acceso y el riesgo de convertir la reproducción en un proceso de selección basado en criterios sociales o comerciales.</p>
+                <p>El desafío será combinar innovación médica, regulación pública y principios bioéticos que protejan la dignidad y los derechos de las personas.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n2"><small>Anterior</small><strong>Baterías de Sodio</strong></a>
+                <a class="sig" data-id="n4"><small>Siguiente</small><strong>IA en Software</strong></a>
+              </nav>
+            </article>
+            <article class="nota" id="n4" tabindex="-1">
+              <span class="chip">Tecnología</span>
+              <h1>La inteligencia artificial se instala en el corazón del desarrollo de software</h1>
+              <p class="meta-nota">Programación y datos</p>
+              <p class="lead">
+                Asistentes que escriben código, prueban y documentan: el oficio de programar cambia de forma
+                acelerada.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Chipuruguayo.jpeg" alt="Imagen de la noticia sobre inteligencia artificial en el desarrollo de software" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-4.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>La inteligencia artificial dejó de ser una herramienta auxiliar para convertirse en una parte estructural del desarrollo de software. Los asistentes actuales no solo completan líneas de código: proponen arquitecturas, escriben pruebas automatizadas, detectan errores y generan documentación técnica en segundos.</p>
+                <p>El cambio también se percibe en la infraestructura. Los centros de datos diseñados específicamente para entrenar y ejecutar modelos de inteligencia artificial crecieron en escala y en consumo energético, lo que obligó a repensar sistemas de refrigeración, redes eléctricas y ubicación geográfica de estas instalaciones.</p>
+                <p>El debate, sin embargo, no es solo técnico. La comunidad de desarrolladores discute cómo cambia el aprendizaje del oficio, qué lugar ocupan la revisión humana y la calidad del código generado, y de qué manera las empresas deberían rendir cuentas cuando un sistema automático produce fallas.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n3"><small>Anterior</small><strong>Edición Genética</strong></a>
+                <a class="sig" data-id="n5"><small>Siguiente</small><strong>Estaciones Espaciales</strong></a>
+              </nav>
+            </article>
+            <article class="nota" id="n5" tabindex="-1">
+              <span class="chip">Tecnología</span>
+              <h1>Estaciones espaciales comerciales y captura de carbono: la órbita como nuevo territorio</h1>
+              <p class="meta-nota">Espacio y clima</p>
+              <p class="lead">
+                Con el fin de la era de la Estación Espacial Internacional, empresas privadas preparan sus
+                propias plataformas orbitales.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Hombreconcomputadora.jpeg" alt="Imagen de la noticia sobre estaciones espaciales comerciales" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-5.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>Las estaciones espaciales comerciales aparecen en la lista de tecnologías disruptivas de 2026 como una de las apuestas más ambiciosas. Con el horizonte del retiro de la Estación Espacial Internacional, distintas empresas trabajan en plataformas orbitales privadas destinadas a la investigación científica, la producción de materiales y el turismo espacial.</p>
+                <p>El informe también menciona los sistemas de captura de carbono, pensados para retirar dióxido de carbono de la atmósfera y almacenarlo de forma segura. Se trata de una familia de tecnologías con costos todavía elevados, pero considerada clave para complementar la reducción de emisiones.</p>
+                <p>El cruce entre ambas líneas de desarrollo abre preguntas regulatorias: quién autoriza, quién fiscaliza y bajo qué criterios ambientales se evalúan las actividades que ocurren fuera de las fronteras de cualquier país.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n4"><small>Anterior</small><strong>IA en Software</strong></a>
+                <a class="sig" data-id="n6"><small>Siguiente</small><strong>Día del Patrimonio 2025</strong></a>
+              </nav>
+            </article>
+            <article class="nota" id="n6" tabindex="-1">
+              <span class="chip chip-cul">Cultura</span>
+              <h1>Día del Patrimonio 2025: el bicentenario como eje de la celebración</h1>
+              <p class="meta-nota">Patrimonio e identidad</p>
+              <p class="lead">
+                Museos abiertos, recorridos guiados y actividades barriales para mirar el patrimonio desde
+                la vida cotidiana.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Candombe.jpeg" alt="Imagen de la noticia sobre el Día del Patrimonio 2025" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-6.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>El Día del Patrimonio volvió a convocar a miles de personas en todo el país con una programación que combinó edificios históricos, recorridos urbanos y propuestas barriales. En esta edición, el bicentenario funcionó como hilo conductor para revisar cómo se construyó la identidad uruguaya y qué huellas quedaron en la arquitectura, la música y las prácticas sociales.</p>
+                <p>La jornada incluyó aperturas especiales de museos, visitas guiadas a cargo de vecinos y colectivos culturales, y actividades pensadas para públicos diversos. Muchas de las propuestas se organizaron de forma descentralizada, con énfasis en barrios y localidades que no siempre aparecen en los circuitos turísticos tradicionales.</p>
+                <p>Para los organizadores, el objetivo es que el patrimonio deje de percibirse como algo reservado a especialistas y pase a entenderse como una construcción colectiva, viva y en permanente discusión.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n5"><small>Anterior</small><strong>Estaciones Espaciales</strong></a>
+                <a class="sig" data-id="n7"><small>Siguiente</small><strong>Libro Sanguinetti</strong></a>
+              </nav>
+            </article>
+            <article class="nota" id="n7" tabindex="-1">
+              <span class="chip chip-cul">Cultura</span>
+              <h1>Se presenta «Memorias de una pasión», un recorrido por el arte uruguayo</h1>
+              <p class="meta-nota">Artes visuales · Presentación de libro</p>
+              <p class="lead">
+                La actividad reunió a artistas, gestores culturales y público en torno a una mirada personal
+                sobre la plástica nacional.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Auditorio.jpeg" alt="Imagen de la noticia sobre la presentación del libro Memorias de una pasión" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-7.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>La presentación del libro «Memorias de una pasión» reunió a un público diverso en una sala colmada, con la presencia de artistas, docentes y gestores culturales. La actividad se desarrolló en un clima distendido y combinó lecturas, comentarios y anécdotas sobre el proceso de escritura.</p>
+                <p>El volumen propone un recorrido personal por la historia del arte uruguayo, con especial atención a las obras, los talleres y los vínculos que marcaron distintas generaciones de artistas. Durante la presentación se destacó la importancia de conservar y difundir material documental que muchas veces permanece en archivos privados.</p>
+                <p>Los organizadores anunciaron que el libro estará disponible en bibliotecas públicas y que se prevén nuevas instancias de presentación en el interior del país.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n6"><small>Anterior</small><strong>Día del Patrimonio 2025</strong></a>
+                <a class="sig" data-id="n8"><small>Siguiente</small><strong>Imputación Bellas Artes</strong></a>
+              </nav>
+            </article>
+            <article class="nota" id="n8" tabindex="-1">
+              <span class="chip chip-cul">Cultura</span>
+              <h1>Un caso judicial reabre el debate sobre los límites de la expresión
+                 en el ámbito educativo</h1>
+              <p class="meta-nota">Cultura y justicia</p>
+              <p class="lead">
+                La imputación de un docente por expresiones vertidas en clase puso el foco en la tensión entre
+                libertad de cátedra, responsabilidad y derecho.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Danza.jpeg" alt="Imagen de la noticia sobre el debate en torno a la libertad de expresión" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-8.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>La imputación de un docente por expresiones realizadas en un espacio de formación artística generó un intenso debate público. Organizaciones gremiales, estudiantes y especialistas en derecho expresaron posiciones encontradas sobre los alcances de la libertad de expresión en el ámbito educativo.</p>
+                <p>El caso reavivó una discusión recurrente: cómo se articulan la libertad de cátedra, el respeto a la dignidad de las personas y la responsabilidad legal de quienes enseñan. Distintas voces reclamaron que el conflicto se resuelva en el ámbito pedagógico y no exclusivamente en sede judicial.</p>
+                <p>Desde el portal seguimos el desarrollo del caso con la premisa de informar sin exponer datos personales y dando espacio a las distintas perspectivas involucradas.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n7"><small>Anterior</small><strong>Libro Sanguinetti</strong></a>
+                <a class="sig" data-id="n9"><small>Siguiente</small><strong>Movida Joven</strong></a>
+              </nav>
+            </article>
+            <article class="nota" id="n9" tabindex="-1">
+              <span class="chip chip-cul">Cultura</span>
+              <h1>Movida Joven abre sus inscripciones para artistas y colectivos</h1>
+              <p class="meta-nota">Convocatoria · Juventud y arte</p>
+              <p class="lead">
+                El programa de la Intendencia convoca a jóvenes creadores en música, teatro, danza, artes
+                visuales y letras.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Teatro.jpeg" alt="Imagen de la noticia sobre la convocatoria Movida Joven" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-9.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>Movida Joven abrió una nueva edición de su convocatoria dirigida a artistas y colectivos de todo el país. El programa busca dar visibilidad a propuestas creadas por jóvenes, con espacios de formación, circulación y encuentro entre pares.</p>
+                <p>Las inscripciones se organizan por categorías que abarcan música, teatro, danza, artes visuales, letras y proyectos interdisciplinarios. Además de los espectáculos y muestras, la convocatoria incluye instancias de acompañamiento técnico y tutorías a cargo de referentes de cada disciplina.</p>
+                <p>Desde la organización señalaron que la prioridad es ampliar la participación de jóvenes de barrios periféricos y de localidades del interior, facilitando apoyos para traslados y materiales.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n8"><small>Anterior</small><strong>Imputación Bellas Artes</strong></a>
+                <a class="sig" data-id="n10"><small>Siguiente</small><strong>Homenaje a Rubén Rada</strong></a>
+              </nav>
+            </article>
+            <article class="nota" id="n10" tabindex="-1">
+              <span class="chip chip-cul">Cultura</span>
+              <h1>Homenaje a Rubén Rada: el legado del Negro en la música uruguaya</h1>
+              <p class="meta-nota">Música y memoria</p>
+              <p class="lead">
+                Músicos de distintas generaciones se reunieron para repasar la obra de una figura que cambió
+                la forma de entender el candombe, el rock y la canción popular.
+              </p>
+
+              <figure class="foto">
+                <img src="Imágenes/Multitud.jpeg" alt="Imagen del homenaje a Rubén Rada" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.classList.add('sin-imagen')">
+                <figcaption class="foto-placeholder">
+                  <span class="ph-icono">🖼</span>
+                  <strong>Espacio reservado para la imagen</strong>
+                  <span>image ia/noticia-10.jpg · 1200 × 675 px</span>
+                </figcaption>
+              </figure>
+
+              <div class="cuerpo">
+                <p>Un homenaje a Rubén Rada reunió a músicos, investigadores y público en una jornada dedicada a repasar su trayectoria. El encuentro recorrió distintas etapas: desde sus primeras incursiones en el candombe y el jazz hasta su paso por bandas emblemáticas y su extensa carrera solista.</p>
+                <p>Los participantes coincidieron en señalar su capacidad para cruzar géneros sin perder identidad, y su influencia en varias generaciones de artistas que encontraron en su obra una forma de combinar la raíz afrouruguaya con lenguajes contemporáneos.</p>
+                <p>La actividad incluyó interpretaciones en vivo, proyecciones de archivo y una mesa de conversación sobre la importancia de preservar los registros sonoros y audiovisuales de la música popular uruguaya.</p>
+              </div>
+
+              <nav class="pasar" aria-label="Otras noticias">
+                <a class="ant" data-id="n9"><small>Anterior</small><strong>Movida Joven</strong></a>
+              </nav>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="pagina" id="pagina-asistente">
+    <section class="franja-celeste">
+      <div class="contenedor asistente-grid">
+        <div>
+          <span class="eyebrow">Inteligencia artificial</span>
+          <h2>Asistente Virtual de Noticias</h2>
+          <p>
+            Preguntale al asistente sobre cualquier tema publicado en el portal. Busca por palabra clave,
+            categoría o concepto, y te devuelve las noticias relacionadas con un resumen.
+          </p>
+          <p>
+            Podés escribir una pregunta libre o usar alguna de las sugerencias para empezar.
+          </p>
+          <div class="sugerencias" aria-label="Preguntas sugeridas">
+            <button type="button" class="chip-sugerida" data-pregunta="baterías de sodio">Baterías de sodio</button>
+            <button type="button" class="chip-sugerida" data-pregunta="edición genética">Edición genética</button>
+            <button type="button" class="chip-sugerida" data-pregunta="patrimonio">Día del Patrimonio</button>
+            <button type="button" class="chip-sugerida" data-pregunta="Rubén Rada">Rubén Rada</button>
+            <button type="button" class="chip-sugerida" data-pregunta="inteligencia artificial">IA</button>
+            <button type="button" class="chip-sugerida" data-pregunta="tecnología">Toda tecnología</button>
+            <button type="button" class="chip-sugerida" data-pregunta="cultura">Toda cultura</button>
+          </div>
+        </div>
+
+        <div class="asistente-panel">
+          <label for="pregunta-ia">Tu búsqueda</label>
+          <div class="asistente-campo">
+            <input type="text" id="pregunta-ia" placeholder="Ej: ¿qué noticias hay sobre baterías?" autocomplete="off">
+            <button type="button" id="btn-consultar">Buscar</button>
+          </div>
+
+          <div id="respuesta-ia" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="pagina" id="pagina-contacto">
+    <section class="contacto">
+      <div class="contenedor">
+        <span class="eyebrow">Hablemos</span>
+        <h2>Contacto</h2>
+        <p class="lead" style="max-width:62ch">
+          ¿Tenés una noticia para compartir, una corrección o una propuesta de colaboración?
+          Escribinos por cualquiera de estos canales o completá el formulario.
+        </p>
+
+        <div class="contacto-grid" style="margin-top:34px">
+
+          <div>
+            <ul class="datos-contacto">
+              <li>
+                <span class="icono" aria-hidden="true">✉</span>
+                <div>
+                  <strong>Correo general</strong>
+                  <a href="mailto:aaguiar1833@gmail.com">aaguiar1833@gmail.com</a>
+                </div>
+              </li>
+              <li>
+                <span class="icono" aria-hidden="true">📝</span>
+                <div>
+                  <strong>Redacción y prensa</strong>
+                  <a href="mailto:aaguiar1833@gmail.com">aaguiar1833@gmail.com</a>
+                </div>
+              </li>
+              <li>
+                <span class="icono" aria-hidden="true">☎</span>
+                <div>
+                  <strong>Teléfono</strong>
+                  <a href="tel:24860226">24860226</a>
+                  <span style="display:block;color:var(--tinta-2);font-size:.85rem">Lunes a viernes, 9:00 a 18:00</span>
+                </div>
+              </li>
+              <li>
+                <span class="icono cul" aria-hidden="true">📍</span>
+                <div>
+                  <strong>Redacción</strong>
+                  <span>Neyra 3649</span>
+                  <span style="display:block;color:var(--tinta-2);font-size:.85rem">Montevideo, Uruguay · CP 11600</span>
+                </div>
+              </li>
+              <li>
+                <span class="icono cul" aria-hidden="true">💬</span>
+                <div>
+                  <strong>WhatsApp de la comunidad</strong>
+                  <a href="tel:091514474">091514474</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tarjeta-form">
+            <h3 style="margin-bottom:18px">Enviar un mensaje</h3>
+
+            <form id="form-contacto" novalidate>
+              <div class="campo-doble">
+                <div class="campo">
+                  <label for="c-nombre">Nombre y apellido</label>
+                  <input type="text" id="c-nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="campo">
+                  <label for="c-email">Correo electrónico</label>
+                  <input type="email" id="c-email" name="email" placeholder="nombre@correo.com" required>
+                </div>
+              </div>
+
+              <div class="campo">
+                <label for="c-asunto">Asunto</label>
+                <select id="c-asunto" name="asunto">
+                  <option>Consulta general</option>
+                  <option>Propuesta de nota o entrevista</option>
+                  <option>Corrección o errata</option>
+                  <option>Colaboración o voluntariado</option>
+                  <option>Publicidad y alianzas</option>
+                  <option>Problema técnico en el sitio</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+
+              <div class="campo">
+                <label for="c-mensaje">Mensaje</label>
+                <textarea id="c-mensaje" name="mensaje" placeholder="Contanos en qué podemos ayudarte…" required></textarea>
+              </div>
+
+              <label class="consentimiento" for="c-acepto">
+                <input type="checkbox" id="c-acepto" required>
+                <span>Acepto que mis datos sean utilizados únicamente para responder esta consulta.</span>
+              </label>
+
+              <button type="submit" class="boton boton-primario" style="width:100%;justify-content:center">
+                Enviar mensaje
+              </button>
+
+              <div id="respuesta-contacto" aria-live="polite"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="pagina" id="pagina-admin">
+    <section class="admin">
+      <div class="contenedor">
+        <span class="eyebrow">Zona restringida</span>
+        <h2>Panel de administración</h2>
+        <p style="max-width:66ch">
+          Desde este panel se publican nuevas notas en el catálogo del portal. Los artículos creados aquí
+          aparecen de inmediato en el menú lateral y en el visor de noticias.
+        </p>
+
+        <div class="estadisticas">
+          <div class="estadistica"><b id="stat-total">10</b><span>Noticias</span></div>
+          <div class="estadistica"><b id="stat-tec">5</b><span>Tecnología</span></div>
+          <div class="estadistica"><b id="stat-cul">5</b><span>Cultura</span></div>
+          <div class="estadistica"><b id="stat-msg">0</b><span>Mensajes</span></div>
+        </div>
+
+        <div class="admin-grid">
+
+          <div class="panel-oscuro">
+            <h3>Publicar una noticia</h3>
+
+            <form id="form-admin" novalidate>
+              <div class="campo">
+                <label for="a-titulo">Título</label>
+                <input type="text" id="a-titulo" placeholder="Ej: Nuevos avances en energía solar" required>
+              </div>
+
+              <div class="campo-doble">
+                <div class="campo">
+                  <label for="a-categoria">Categoría</label>
+                  <select id="a-categoria">
+                    <option value="Tecnología">Tecnología</option>
+                    <option value="Cultura">Cultura</option>
+                  </select>
+                </div>
+                <div class="campo">
+                  <label for="a-imagen">Archivo de imagen</label>
+                  <input type="text" id="a-imagen" placeholder="image ia/noticia-x.jpg">
+                </div>
+              </div>
+
+              <div class="campo">
+                <label for="a-etiquetas">Etiquetas (separadas por coma)</label>
+                <input type="text" id="a-etiquetas" placeholder="energía, solar, innovación">
+              </div>
+
+              <div class="campo">
+                <label for="a-resumen">Resumen / copete</label>
+                <textarea id="a-resumen" style="min-height:80px" placeholder="Una o dos líneas que resuman la noticia…" required></textarea>
+              </div>
+
+              <div class="campo">
+                <label for="a-cuerpo">Cuerpo de la noticia</label>
+                <textarea id="a-cuerpo" placeholder="Escribí los párrafos. Separá cada párrafo con un salto de línea." required></textarea>
+              </div>
+
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button type="submit" class="boton boton-claro">Publicar noticia</button>
+                <button type="reset" class="boton boton-fantasma">Limpiar formulario</button>
+              </div>
+
+              <div id="respuesta-admin" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <div class="panel-oscuro">
+            <h3>Noticias publicadas desde el panel</h3>
+
+            <table class="tabla-admin">
+              <thead>
+                <tr>
+                  <th scope="col">Título</th>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo-tabla-admin">
+                <tr><td class="vacio" colspan="3">Todavía no publicaste noticias desde este panel.</td></tr>
+              </tbody>
+            </table>
+
+            <p class="nota-admin">
+              Nota: las publicaciones se guardan en el almacenamiento local del navegador. Si borrás los datos
+              del sitio, se eliminarán. Las diez noticias originales del portal no pueden borrarse.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="pagina" id="pagina-apendice">
+    <section class="apendice">
+      <div class="contenedor">
+        <span class="eyebrow">Documentación del proyecto</span>
+        <h2>Apéndice</h2>
+        <p class="lead" style="max-width:66ch">
+          Material complementario: glosario de términos, fuentes consultadas y criterios de accesibilidad
+          aplicados al portal.
+        </p>
+
+        <div class="apendice-grid">
+
+          <div class="bloque-apendice">
+            <h3>A · Glosario de términos</h3>
+            <dl class="glosario">
+              <dt>Base editing (edición de bases)</dt>
+              <dd>Técnica de edición genética que modifica una letra específica del ADN sin cortar la doble cadena, lo que reduce efectos no deseados.</dd>
+
+              <dt>Batería de estado sólido</dt>
+              <dd>Batería que reemplaza el electrolito líquido por un material sólido. Promete mayor seguridad, más autonomía y cargas más rápidas.</dd>
+
+              <dt>Batería de sodio</dt>
+              <dd>Acumulador que utiliza sodio en lugar de litio. Es más abundante y económico, aunque con menor densidad energética.</dd>
+
+              <dt>Captura de carbono</dt>
+              <dd>Conjunto de tecnologías que retiran dióxido de carbono de la atmósfera o de fuentes industriales y lo almacenan de forma segura.</dd>
+
+              <dt>Centro de datos de hiperescala</dt>
+              <dd>Instalación de gran tamaño diseñada para alojar miles de servidores, habitualmente asociada al entrenamiento de modelos de inteligencia artificial.</dd>
+
+              <dt>Medicina de precisión</dt>
+              <dd>Enfoque médico que adapta los tratamientos al perfil genético y molecular de cada paciente.</dd>
+
+              <dt>SXSW</dt>
+              <dd>Festival anual que se realiza en Austin, Texas, dedicado a la tecnología, el cine, la música y la cultura.</dd>
+
+              <dt>MIT Technology Review</dt>
+              <dd>Publicación del Instituto Tecnológico de Massachusetts especializada en tecnología e innovación. Elabora anualmente su lista de tecnologías disruptivas.</dd>
+
+              <dt>Movida Joven</dt>
+              <dd>Programa de convocatoria y circulación de propuestas artísticas creadas por jóvenes.</dd>
+            </dl>
+          </div>
+
+          <div class="bloque-apendice">
+            <h3>B · Fuentes y referencias</h3>
+            <ul class="lista-fuentes">
+              <li>
+                <strong>MIT Technology Review</strong><br>
+                Selección anual de las diez tecnologías más disruptivas. Anuncio presentado durante el festival SXSW, Austin, marzo de 2026.
+              </li>
+              <li>
+                <strong>Cobertura propia del portal</strong><br>
+                Notas redactadas por el equipo de Jóvenes Creativos a partir de la lista del MIT y de agenda cultural local.
+              </li>
+              <li>
+                <strong>Agenda cultural</strong><br>
+                Programación del Día del Patrimonio, convocatorias artísticas juveniles y actividades de presentación de libros.
+              </li>
+              <li>
+                <strong>Material de archivo</strong><br>
+                Registros sonoros y audiovisuales de música popular uruguaya consultados para la nota de homenaje.
+              </li>
+              <li>
+                <strong>Nota metodológica</strong><br>
+                Las imágenes del portal son de carácter ilustrativo y se alojan en la carpeta <code>image ia/</code>. Cuando una imagen no está disponible, el sistema muestra un espacio reservado.
+              </li>
+            </ul>
+          </div>
+
+          <div class="bloque-apendice">
+            <h3>C · Accesibilidad aplicada</h3>
+            <ul class="lista-fuentes">
+              <li>Enlace «Saltar al contenido» al comienzo del documento.</li>
+              <li>Estructura semántica con <code>header</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>aside</code> y <code>footer</code>.</li>
+              <li>Uso de <code>aria-current</code>, <code>aria-pressed</code> y <code>aria-live</code> para estados dinámicos.</li>
+              <li>Contraste de color verificado y foco visible en todos los controles.</li>
+              <li>Respeto por <code>prefers-reduced-motion</code> para quienes prefieren menos animaciones.</li>
+              <li>Textos alternativos descriptivos en todas las imágenes.</li>
+              <li>Navegación por teclado en todos los elementos interactivos.</li>
+            </ul>
+          </div>
+
+          <div class="bloque-apendice">
+            <h3>D · Cómo usar el asistente</h3>
+            <ul class="lista-fuentes">
+              <li>Escribí una palabra clave (por ejemplo: <em>baterías</em>, <em>Rada</em>, <em>patrimonio</em>).</li>
+              <li>También podés escribir una categoría completa: <em>tecnología</em> o <em>cultura</em>.</li>
+              <li>El asistente devuelve todas las noticias que contienen ese término, con un resumen y un enlace para leerlas.</li>
+              <li>Si no encuentra coincidencias, sugiere probar con otro término.</li>
+            </ul>
+
+            <p class="creditos">
+              <strong>Créditos:</strong> Proyecto desarrollado por Ana Laura Aguiar en el marco del proyecto final avanzado del programa «Jóvenes creativos», 2026. Proyecto final avanzado.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor pie-interior">
+    <p class="pie-marca">Jóvenes Creativos</p>
+
+    <nav aria-label="Pie de página">
+      <a data-pagina="inicio">Inicio</a>
+      <a data-pagina="noticias">Noticias</a>
+      <a data-pagina="asistente">Asistente</a>
+      <a data-pagina="contacto">Contacto</a>
+      <a data-pagina="admin">Admin</a>
+      <a data-pagina="apendice">Apéndice</a>
+    </nav>
+
+    <p class="pie-legal">&copy; 2026 Jóvenes Creativos · Proyecto Final Avanzado · Montevideo, Uruguay</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  function normalizar(texto){
+    return String(texto)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g,'')
+      .replace(/\s+/g,' ')
+      .trim();
+  }
+
+  function escapar(texto){
+    return String(texto).replace(/[&<>"']/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+
+  var NOTICIAS = [
+    {
+      id:'n1', cat:'Tecnología', titulo:'MIT: Tecnologías 2026',
+      corto:'La lista del MIT anticipa infraestructuras, energía y medicina de precisión.',
+      resumen:'El MIT Technology Review presentó en el festival SXSW de Austin su selección de las diez tecnologías más disruptivas de 2026. La lista pone el foco en infraestructuras de gran escala, nuevas fuentes de energía, medicina de precisión y debates éticos. Entre los avances aparecen las baterías de sodio, los reactores nucleares modulares, la edición genética, los centros de datos para IA, las estaciones espaciales comerciales y la captura de carbono.',
+      claves:['mit','technology review','sxsw','austin','tecnologias disruptivas','2026','lista','infraestructura','companeros de inteligencia artificial','reactores modulares','diez tecnologias']
+    },
+    {
+      id:'n2', cat:'Tecnología', titulo:'Baterías de Sodio',
+      corto:'Más abundante y barato que el litio, el sodio puede abaratar el almacenamiento.',
+      resumen:'Las baterías de sodio podrían reducir la dependencia mundial del litio. El sodio es más abundante y económico, y resulta adecuado para almacenar electricidad a gran escala en parques solares y eólicos. El informe también destaca las baterías de estado sólido, que reemplazan electrolitos líquidos por materiales sólidos y prometen mayor seguridad y cargas más rápidas.',
+      claves:['baterias de sodio','sodio','litio','bateria','energia','almacenamiento','renovables','estado solido','vehiculos electricos','electrolito','densidad energetica','parques solares','eolicos']
+    },
+    {
+      id:'n3', cat:'Tecnología', titulo:'Edición Genética',
+      corto:'El base editing corrige mutaciones puntuales, pero abre debates bioéticos.',
+      resumen:'La medicina de precisión y el base editing permiten corregir mutaciones puntuales del ADN sin alterar grandes segmentos del material genético. El avance plantea interrogantes sobre la puntuación de embriones, la discriminación, la desigualdad en el acceso y el riesgo de selección reproductiva por criterios sociales o comerciales.',
+      claves:['edicion genetica','base editing','adn','gen','genes','mutacion','medicina de precision','bioetica','embriones','terapia genetica','salud','enfermedades hereditarias','puntuacion de embriones']
+    },
+    {
+      id:'n4', cat:'Tecnología', titulo:'IA en Software',
+      corto:'Los asistentes de IA ya escriben, prueban y documentan código.',
+      resumen:'La inteligencia artificial se instaló en el centro del desarrollo de software: los asistentes proponen arquitecturas, escriben pruebas automatizadas, detectan errores y generan documentación técnica. El cambio también transforma los centros de datos, que crecen en escala y consumo energético, y abre debates sobre la revisión humana y la responsabilidad.',
+      claves:['inteligencia artificial','ia','software','programacion','codigo','desarrollo','centros de datos','hiperescala','testing','pruebas','asistentes','refrigeracion','revision humana']
+    },
+    {
+      id:'n5', cat:'Tecnología', titulo:'Estaciones Espaciales',
+      corto:'Plataformas orbitales privadas y sistemas de captura de carbono.',
+      resumen:'Con el retiro de la Estación Espacial Internacional en el horizonte, empresas privadas preparan estaciones orbitales comerciales para investigación, producción y turismo. El informe también destaca los sistemas de captura de carbono, considerados clave para complementar la reducción de emisiones. Ambas líneas abren preguntas regulatorias.',
+      claves:['estaciones espaciales','espacio','orbita','estacion espacial internacional','captura de carbono','co2','clima','turismo espacial','satelite','regulacion','plataformas orbitales']
+    },
+    {
+      id:'n6', cat:'Cultura', titulo:'Día del Patrimonio 2025',
+      corto:'Museos abiertos y recorridos barriales con el bicentenario como eje.',
+      resumen:'El Día del Patrimonio convocó a miles de personas con una programación que combinó edificios históricos, recorridos urbanos y propuestas barriales, con el bicentenario como hilo conductor. La jornada incluyó aperturas de museos, visitas guiadas por vecinos y actividades descentralizadas en barrios y localidades.',
+      claves:['dia del patrimonio','patrimonio','bicentenario','2025','museos','historia','uruguay','identidad','recorridos','arquitectura','visitas guiadas','barrios']
+    },
+    {
+      id:'n7', cat:'Cultura', titulo:'Libro Sanguinetti',
+      corto:'«Memorias de una pasión», un recorrido personal por el arte uruguayo.',
+      resumen:'La presentación del libro «Memorias de una pasión» reunió a artistas, docentes y gestores culturales. El volumen propone un recorrido personal por la historia del arte uruguayo, con atención a obras, talleres y vínculos entre generaciones. Se destacó la importancia de conservar material documental que permanece en archivos privados.',
+      claves:['sanguinetti','memorias de una pasion','libro','arte','artes visuales','plastica','uruguay','presentacion','archivos','talleres','gestores culturales']
+    },
+    {
+      id:'n8', cat:'Cultura', titulo:'Imputación Bellas Artes',
+      corto:'Un caso judicial reabre el debate sobre los límites de la expresión en la educación.',
+      resumen:'La imputación de un docente por expresiones realizadas en un espacio de formación artística generó un intenso debate público. Organizaciones gremiales, estudiantes y especialistas discutieron los alcances de la libertad de expresión en el ámbito educativo y la articulación entre libertad de cátedra, dignidad y responsabilidad legal.',
+      claves:['bellas artes','imputacion','justicia','libertad de expresion','libertad de catedra','docente','educacion','derecho','gremios','estudiantes','caso judicial']
+    },
+    {
+      id:'n9', cat:'Cultura', titulo:'Movida Joven',
+      corto:'Convocatoria para artistas y colectivos jóvenes en varias disciplinas.',
+      resumen:'Movida Joven abrió una nueva convocatoria para artistas y colectivos de todo el país. Las inscripciones se organizan por categorías que abarcan música, teatro, danza, artes visuales, letras y proyectos interdisciplinarios. La prioridad es ampliar la participación de jóvenes de barrios periféricos y del interior.',
+      claves:['movida joven','jovenes','artistas','convocatoria','inscripciones','musica','teatro','danza','artes visuales','letras','intendencia','interior','barrios']
+    },
+    {
+      id:'n10', cat:'Cultura', titulo:'Homenaje a Rubén Rada',
+      corto:'El legado del Negro en la música uruguaya, repasado por varias generaciones.',
+      resumen:'Un homenaje a Rubén Rada reunió a músicos, investigadores y público para repasar su trayectoria, desde el candombe y el jazz hasta su carrera solista. Se destacó su capacidad para cruzar géneros sin perder identidad y su influencia en la combinación de la raíz afrouruguaya con lenguajes contemporáneos. La jornada incluyó interpretaciones en vivo y proyecciones de archivo.',
+      claves:['ruben rada','el negro','rada','musica','candombe','rock','cancion popular','uruguay','homenaje','el kinto','totem','opa','afrouruguaya','legado','archivo sonoro']
+    }
+  ];
+
+  var CLAVE_ALMACEN = 'jc_noticias_admin';
+  function cargarNotasAdmin(){
+    try{
+      var guardadas = JSON.parse(localStorage.getItem(CLAVE_ALMACEN) || '[]');
+      return Array.isArray(guardadas) ? guardadas : [];
+    }catch(e){ return []; }
+  }
+
+  function obtenerTodas(){
+    return NOTICIAS.concat(cargarNotasAdmin());
+  }
+
+  var PAGINAS_VALIDAS = ['inicio','noticias','asistente','contacto','admin','apendice'];
+
+  function mostrarPagina(id, hacerScroll){
+    if(PAGINAS_VALIDAS.indexOf(id) === -1) id = 'inicio';
+
+    document.querySelectorAll('.pagina').forEach(function(p){
+      p.classList.toggle('activa', p.id === 'pagina-' + id);
+    });
+
+    document.querySelectorAll('.menu-principal a[data-nav]').forEach(function(a){
+      var activo = a.getAttribute('data-nav') === id;
+      if(activo){
+        a.setAttribute('aria-current','page');
+      }else{
+        a.removeAttribute('aria-current');
+      }
+    });
+
+    if(hacerScroll !== false){
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    if(location.hash !== '#' + id){
+      history.replaceState(null,'', '#' + id);
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    var objetivo = e.target.closest('[data-pagina]');
+    if(!objetivo) return;
+    e.preventDefault();
+    var pag = objetivo.getAttribute('data-pagina');
+    mostrarPagina(pag, true);
+  });
+
+  window.addEventListener('hashchange', function(){
+    var id = location.hash.replace('#','') || 'inicio';
+    if(PAGINAS_VALIDAS.indexOf(id) !== -1){
+      mostrarPagina(id, false);
+    }
+  });
+
+
+  function pintarListasInicio(){
+    document.querySelectorAll('.lista-notas').forEach(function(ul){
+      var cat = ul.getAttribute('data-lista');
+      var filtradas = obtenerTodas().filter(function(n){ return n.cat === cat; });
+      ul.innerHTML = filtradas.map(function(n){
+        return '<li>' +
+          '<a data-pagina="noticias" data-abrir="' + n.id + '">' +
+            '<strong>' + escapar(n.titulo) + '</strong>' +
+            '<span>' + escapar(n.corto) + '</span>' +
+          '</a>' +
+        '</li>';
+      }).join('');
+    });
+  }
+
+  var visorBienvenida = document.getElementById('bienvenida-visor');
+
+  function abrirNota(id){
+    var nota = document.getElementById(id);
+    if(!nota) return false;
+
+    document.querySelectorAll('.nota').forEach(function(n){ n.classList.remove('activa'); });
+    nota.classList.add('activa');
+
+    if(visorBienvenida) visorBienvenida.classList.add('oculta');
+
+    document.querySelectorAll('#lista-noticias a').forEach(function(a){
+      a.classList.toggle('activo', a.getAttribute('data-id') === id);
+    });
+
+    var pagNoticias = document.getElementById('pagina-noticias');
+    if(pagNoticias && !pagNoticias.classList.contains('activa')){
+      mostrarPagina('noticias', false);
+    }
+
+    setTimeout(function(){
+      nota.focus();
+      var visor = document.getElementById('contenido-noticia');
+      if(visor){
+        var y = visor.getBoundingClientRect().top + window.pageYOffset - 110;
+        window.scrollTo({top: y, behavior:'smooth'});
+      }
+    }, 60);
+
+    return true;
+  }
+
+  document.addEventListener('click', function(e){
+    var linkNota = e.target.closest('[data-id]');
+    if(!linkNota) return;
+
+    var id = linkNota.getAttribute('data-id');
+    if(!id) return;
+
+    if(document.getElementById(id)){
+      e.preventDefault();
+      abrirNota(id);
+    }
+  });
+
+  document.addEventListener('click', function(e){
+    var el = e.target.closest('[data-abrir]');
+    if(!el) return;
+    e.preventDefault();
+    abrirNota(el.getAttribute('data-abrir'));
+  });
+
+  var inputBuscador = document.getElementById('buscador');
+  var botonesFiltro = document.querySelectorAll('.filtro');
+  var sinResultados = document.getElementById('sin-resultados');
+  var filtroActual = 'todas';
+
+  function aplicarFiltros(){
+    var q = inputBuscador ? normalizar(inputBuscador.value) : '';
+    var items = document.querySelectorAll('#lista-noticias > li');
+    var visibles = 0;
+
+    items.forEach(function(li){
+      var cat = li.getAttribute('data-cat');
+      var tags = normalizar(li.getAttribute('data-tags') || '');
+      var nombre = normalizar(li.querySelector('.nombre').textContent);
+      var coincideCat = (filtroActual === 'todas') || (cat === filtroActual);
+      var coincideTexto = !q || tags.indexOf(q) !== -1 || nombre.indexOf(q) !== -1;
+      var ok = coincideCat && coincideTexto;
+      li.style.display = ok ? '' : 'none';
+      if(ok) visibles++;
+    });
+
+    if(sinResultados) sinResultados.hidden = visibles !== 0;
+  }
+
+  if(inputBuscador){
+    inputBuscador.addEventListener('input', aplicarFiltros);
+  }
+
+  botonesFiltro.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      botonesFiltro.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+      btn.setAttribute('aria-pressed','true');
+      filtroActual = btn.getAttribute('data-filtro');
+      aplicarFiltros();
+    });
+  });
+
+  var limpiar = document.getElementById('limpiar-filtros');
+  if(limpiar){
+    limpiar.addEventListener('click', function(){
+      if(inputBuscador) inputBuscador.value = '';
+      filtroActual = 'todas';
+      botonesFiltro.forEach(function(b){
+        b.setAttribute('aria-pressed', b.getAttribute('data-filtro') === 'todas' ? 'true' : 'false');
+      });
+      aplicarFiltros();
+    });
+  }
+
+  var inputIA = document.getElementById('pregunta-ia');
+  var btnIA = document.getElementById('btn-consultar');
+  var respuestaIA = document.getElementById('respuesta-ia');
+
+  var STOPWORDS = ['que','cual','cuales','como','donde','cuando','por','para','con','los','las','del','una','uno','unos','unas','sobre','hay','noticias','noticia','dice','dime','busca','buscar','muestra','mostrar','quiero','saber','es','son','el','la','en','de','y','o'];
+
+  function extraerTerminos(texto){
+    return normalizar(texto)
+      .replace(/[¿?¡!.,;:()"'«»]/g,' ')
+      .split(' ')
+      .map(function(t){ return t.trim(); })
+      .filter(function(t){ return t.length > 2 && STOPWORDS.indexOf(t) === -1; });
+  }
+
+  function buscarNoticias(consulta){
+    var terminos = extraerTerminos(consulta);
+    var q = normalizar(consulta);
+    var todas = obtenerTodas();
+
+    if(!terminos.length && !q){
+      return [];
+    }
+
+    var resultados = [];
+
+    todas.forEach(function(n){
+      var puntaje = 0;
+      var textoCompleto = normalizar(
+        n.titulo + ' ' + n.corto + ' ' + n.resumen + ' ' + n.claves.join(' ') + ' ' + n.cat
+      );
+
+      if(q && textoCompleto.indexOf(q) !== -1) puntaje += 8;
+
+      terminos.forEach(function(t){
+        if(normalizar(n.titulo).indexOf(t) !== -1) puntaje += 5;
+        if(normalizar(n.claves.join(' ')).indexOf(t) !== -1) puntaje += 3;
+        if(normalizar(n.resumen).indexOf(t) !== -1) puntaje += 2;
+        if(normalizar(n.corto).indexOf(t) !== -1) puntaje += 2;
+      });
+
+      if(terminos.indexOf('tecnologia') !== -1 && n.cat === 'Tecnología') puntaje += 4;
+      if(terminos.indexOf('cultura') !== -1 && n.cat === 'Cultura') puntaje += 4;
+
+      if(puntaje > 0){
+        resultados.push({nota:n, puntaje:puntaje});
+      }
+    });
+
+    resultados.sort(function(a,b){ return b.puntaje - a.puntaje; });
+    return resultados.map(function(r){ return r.nota; });
+  }
+
+  function renderizarRespuesta(consulta, resultados){
+    if(!resultados.length){
+      return '<p class="aviso">No encontré noticias que coincidan con <strong>«' +
+        escapar(consulta) + '»</strong>. Probá con otra palabra clave, por ejemplo: ' +
+        '<em>baterías</em>, <em>Rada</em>, <em>patrimonio</em>, <em>inteligencia artificial</em> ' +
+        'o una categoría completa como <em>tecnología</em> o <em>cultura</em>.</p>';
+    }
+
+    var html = '';
+    html += '<div class="respuesta' + (resultados[0].cat === 'Cultura' ? ' cultural' : '') + '">';
+    html += '<h4>Encontré ' + resultados.length + ' noticia' + (resultados.length === 1 ? '' : 's') + '</h4>';
+    html += '<p>Estos son los artículos del portal relacionados con <strong>«' +
+      escapar(consulta) + '»</strong>:</p>';
+    html += '<ul class="lista-resultados">';
+
+    resultados.forEach(function(n){
+      html += '<li>' +
+        '<a data-abrir="' + n.id + '">' +
+          '<span class="cat-tag">' + escapar(n.cat) + '</span>' +
+          '<strong>' + escapar(n.titulo) + '</strong>' +
+          '<span>' + escapar(n.corto) + '</span>' +
+        '</a>' +
+      '</li>';
+    });
+
+    html += '</ul></div>';
+    return html;
+  }
+
+  function consultarIA(){
+    var consulta = (inputIA && inputIA.value) ? inputIA.value.trim() : '';
+    if(!consulta){
+      if(respuestaIA){
+        respuestaIA.innerHTML = '<p class="aviso">Escribí una palabra o pregunta para que pueda buscar noticias relacionadas.</p>';
+      }
+      return;
+    }
+
+    var resultados = buscarNoticias(consulta);
+    if(respuestaIA){
+      respuestaIA.innerHTML = renderizarRespuesta(consulta, resultados);
+    }
+  }
+
+  if(btnIA) btnIA.addEventListener('click', consultarIA);
+  if(inputIA){
+    inputIA.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); consultarIA(); }
+    });
+  }
+
+  document.querySelectorAll('.chip-sugerida').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var pregunta = chip.getAttribute('data-pregunta') || '';
+      if(inputIA) inputIA.value = pregunta;
+      consultarIA();
+    });
+  });
+  var formContacto = document.getElementById('form-contacto');
+  var respuestaContacto = document.getElementById('respuesta-contacto');
+
+  if(formContacto){
+    formContacto.addEventListener('submit', function(e){
+      e.preventDefault();
+      var nombre = document.getElementById('c-nombre').value.trim();
+      var email = document.getElementById('c-email').value.trim();
+      var mensaje = document.getElementById('c-mensaje').value.trim();
+      var acepto = document.getElementById('c-acepto').checked;
+
+      if(!nombre || !email || !mensaje || !acepto){
+        if(respuestaContacto){
+          respuestaContacto.innerHTML = '<div class="mensaje-error">Completá todos los campos y aceptá el uso de datos para enviar la consulta.</div>';
+        }
+        return;
+      }
+
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        if(respuestaContacto){
+          respuestaContacto.innerHTML = '<div class="mensaje-error">El correo electrónico no parece válido.</div>';
+        }
+        return;
+      }
+
+      try{
+        var msg = parseInt(localStorage.getItem('jc_mensajes') || '0', 10) + 1;
+        localStorage.setItem('jc_mensajes', String(msg));
+        var stat = document.getElementById('stat-msg');
+        if(stat) stat.textContent = msg;
+      }catch(err){}
+
+      if(respuestaContacto){
+        respuestaContacto.innerHTML = '<div class="mensaje-ok">¡Gracias, ' + escapar(nombre) +
+          '! Recibimos tu mensaje y te vamos a responder a <strong>' + escapar(email) + '</strong> a la brevedad.</div>';
+      }
+      formContacto.reset();
+    });
+  }
+  var formAdmin = document.getElementById('form-admin');
+  var respuestaAdmin = document.getElementById('respuesta-admin');
+  var tbodyAdmin = document.getElementById('cuerpo-tabla-admin');
+
+  function actualizarEstadisticas(){
+    var todas = obtenerTodas();
+    var tec = todas.filter(function(n){ return n.cat === 'Tecnología'; }).length;
+    var cul = todas.filter(function(n){ return n.cat === 'Cultura'; }).length;
+
+    var elTotal = document.getElementById('stat-total');
+    var elTec = document.getElementById('stat-tec');
+    var elCul = document.getElementById('stat-cul');
+    if(elTotal) elTotal.textContent = todas.length;
+    if(elTec) elTec.textContent = tec;
+    if(elCul) elCul.textContent = cul;
+  }
+
+  function pintarTablaAdmin(){
+    if(!tbodyAdmin) return;
+    var admin = cargarNotasAdmin();
+
+    if(!admin.length){
+      tbodyAdmin.innerHTML = '<tr><td class="vacio" colspan="3">Todavía no publicaste noticias desde este panel.</td></tr>';
+      return;
+    }
+
+    tbodyAdmin.innerHTML = admin.map(function(n){
+      return '<tr>' +
+        '<td>' + escapar(n.titulo) + '</td>' +
+        '<td>' + escapar(n.cat) + '</td>' +
+        '<td><button type="button" class="borrar" data-borrar="' + n.id + '">Borrar</button></td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  function agregarAlCatalogo(n){
+    var lista = document.getElementById('lista-noticias');
+    if(lista){
+      var li = document.createElement('li');
+      li.setAttribute('data-cat', n.cat);
+      li.setAttribute('data-tags', (n.claves || []).join(' '));
+      li.innerHTML = '<a data-id="' + n.id + '">' +
+        '<span class="punto' + (n.cat === 'Cultura' ? ' cul' : '') + '" aria-hidden="true"></span>' +
+        '<span class="nombre">' + escapar(n.titulo) + '</span>' +
+        '<span class="meta">' + escapar(n.cat) + '</span>' +
+        '</a>';
+      lista.appendChild(li);
+    }
+
+    var visor = document.getElementById('contenido-noticia');
+    if(visor){
+      var art = document.createElement('article');
+      art.className = 'nota' + (n.cat === 'Cultura' ? ' chip-cul' : '');
+      art.id = n.id;
+      art.setAttribute('tabindex','-1');
+
+      var imgHtml = '';
+      if(n.imagen){
+        imgHtml = '<figure class="foto">' +
+          '<img src="' + escapar(n.imagen) + '" alt="Imagen de la noticia: ' + escapar(n.titulo) + '" loading="lazy" ' +
+          'onerror="this.style.display=\'none\';this.parentElement.classList.add(\'sin-imagen\')">' +
+          '<figcaption class="foto-placeholder">' +
+            '<span class="ph-icono">🖼</span>' +
+            '<strong>Espacio reservado para la imagen</strong>' +
+            '<span>' + escapar(n.imagen) + '</span>' +
+          '</figcaption>' +
+        '</figure>';
+      }
+
+      var parrafos = (n.cuerpo || '').split(/\n+/).filter(function(p){ return p.trim(); });
+      var cuerpoHtml = parrafos.map(function(p){ return '<p>' + escapar(p) + '</p>'; }).join('');
+
+      art.innerHTML =
+        '<span class="chip' + (n.cat === 'Cultura' ? ' chip-cul' : '') + '">' + escapar(n.cat) + '</span>' +
+        '<h1>' + escapar(n.titulo) + '</h1>' +
+        '<p class="meta-nota">Publicado desde el panel de administración</p>' +
+        '<p class="lead">' + escapar(n.corto) + '</p>' +
+        imgHtml +
+        '<div class="cuerpo">' + cuerpoHtml + '</div>';
+
+      visor.appendChild(art);
+    }
+
+    pintarListasInicio();
+    actualizarEstadisticas();
+  }
+
+  if(formAdmin){
+    formAdmin.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      var titulo = document.getElementById('a-titulo').value.trim();
+      var cat = document.getElementById('a-categoria').value;
+      var imagen = document.getElementById('a-imagen').value.trim();
+      var etiquetas = document.getElementById('a-etiquetas').value.trim();
+      var resumen = document.getElementById('a-resumen').value.trim();
+      var cuerpo = document.getElementById('a-cuerpo').value.trim();
+
+      if(!titulo || !resumen || !cuerpo){
+        if(respuestaAdmin){
+          respuestaAdmin.innerHTML = '<div class="mensaje-error">Completá al menos el título, el resumen y el cuerpo de la noticia.</div>';
+        }
+        return;
+      }
+
+      var id = 'admin-' + Date.now();
+      var claves = etiquetas ? etiquetas.split(',').map(function(t){ return t.trim(); }).filter(Boolean) : [];
+
+      var nueva = {
+        id: id,
+        cat: cat,
+        titulo: titulo,
+        corto: resumen,
+        resumen: resumen,
+        cuerpo: cuerpo,
+        imagen: imagen,
+        claves: claves.concat([titulo.toLowerCase(), cat.toLowerCase()])
+      };
+
+      var admin = cargarNotasAdmin();
+      admin.push(nueva);
+      try{
+        localStorage.setItem(CLAVE_ALMACEN, JSON.stringify(admin));
+      }catch(err){
+        if(respuestaAdmin){
+          respuestaAdmin.innerHTML = '<div class="mensaje-error">No se pudo guardar la noticia en el almacenamiento local.</div>';
+        }
+        return;
+      }
+
+      agregarAlCatalogo(nueva);
+      pintarTablaAdmin();
+
+      if(respuestaAdmin){
+        respuestaAdmin.innerHTML = '<div class="mensaje-ok">Noticia publicada correctamente. Ya aparece en el catálogo.</div>';
+      }
+
+      formAdmin.reset();
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-borrar]');
+    if(!btn) return;
+    var id = btn.getAttribute('data-borrar');
+    if(!id) return;
+
+    var admin = cargarNotasAdmin().filter(function(n){ return n.id !== id; });
+    try{
+      localStorage.setItem(CLAVE_ALMACEN, JSON.stringify(admin));
+    }catch(err){ return; }
+
+    var li = document.querySelector('#lista-noticias li a[data-id="' + id + '"]');
+    if(li) li.closest('li').remove();
+
+    var art = document.getElementById(id);
+    if(art) art.remove();
+
+    pintarTablaAdmin();
+    pintarListasInicio();
+    actualizarEstadisticas();
+  });
+
+  function init(){
+    var hashInicial = location.hash.replace('#','');
+    if(PAGINAS_VALIDAS.indexOf(hashInicial) !== -1){
+      mostrarPagina(hashInicial, false);
+    }else{
+      mostrarPagina('inicio', false);
+    }
+
+    cargarNotasAdmin().forEach(function(n){
+      agregarAlCatalogo(n);
+    });
+
+    pintarListasInicio();
+    pintarTablaAdmin();
+    actualizarEstadisticas();
+
+    try{
+      var msg = localStorage.getItem('jc_mensajes');
+      var stat = document.getElementById('stat-msg');
+      if(stat && msg) stat.textContent = msg;
+    }catch(err){}
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  }else{
+    init();
+  }
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de noticias de tecnología, ciencia y cultura.">
+    <title>Catálogo de Noticias - Portal Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <a class="saltar" href="#contenido-noticia">Saltar a la noticia</a>
+
+    <header class="cabecera">
+        <div class="cabecera-interior">
+            <a class="logo-container" href="index.html" aria-label="Jóvenes Creativos, ir al inicio">
+                <img src="image ia/logo.png" alt="Logo de la marca" class="imagen-logo" onerror="this.remove()">
+                <span class="marca">Jóvenes Creativos</span>
+            </a>
+            <nav class="menu-principal" aria-label="Principal">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="noticias.html" class="active" aria-current="page">Noticias</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor contenedor-noticias-layout">
+        <!-- Menú lateral con el listado de noticias -->
+        <aside class="sidebar-noticias" aria-label="Listado de noticias">
+            <h2>Categorías y Noticias</h2>
+
+            <label class="visualmente-oculto" for="buscador">Buscar una noticia</label>
+            <input type="search" id="buscador" placeholder="Buscar una noticia" autocomplete="off">
+
+            <div class="filtros" role="group" aria-label="Filtrar por categoría">
+                <button type="button" class="filtro" data-filtro="todas" aria-pressed="true">Todas</button>
+                <button type="button" class="filtro" data-filtro="Tecnología" aria-pressed="false">Tecnología</button>
+                <button type="button" class="filtro" data-filtro="Cultura" aria-pressed="false">Cultura</button>
+            </div>
+
+            <ul id="lista-noticias" class="lista-lateral">
+                <li data-cat="Tecnología" data-tags="MIT Technology Review tecnologías 2026 SXSW innovación disruptivas">
+                    <a href="#n1" data-id="n1"><span class="punto" aria-hidden="true"></span><span class="nombre">MIT: Tecnologías 2026</span><span class="meta">Tecnología</span></a>
+                </li>
+                <li data-cat="Tecnología" data-tags="baterías sodio litio energía almacenamiento renovables estado sólido vehículos eléctricos">
+                    <a href="#n2" data-id="n2"><span class="punto" aria-hidden="true"></span><span class="nombre">Baterías de Sodio</span><span class="meta">Tecnología</span></a>
+                </li>
+                <li data-cat="Tecnología" data-tags="edición genética base editing ADN genes medicina de precisión terapia embriones bioética salud">
+                    <a href="#n3" data-id="n3"><span class="punto" aria-hidden="true"></span><span class="nombre">Edición Genética</span><span class="meta">Tecnología</span></a>
+                </li>
+                <li data-cat="Tecnología" data-tags="IA inteligencia artificial software programación código centros de datos testing hiperescala">
+                    <a href="#n4" data-id="n4"><span class="punto" aria-hidden="true"></span><span class="nombre">IA en Software</span><span class="meta">Tecnología</span></a>
+                </li>
+                <li data-cat="Tecnología" data-tags="espacio estaciones espaciales órbita captura de carbono CO2 clima sostenibilidad turismo espacial">
+                    <a href="#n5" data-id="n5"><span class="punto" aria-hidden="true"></span><span class="nombre">Estaciones Espaciales</span><span class="meta">Tecnología</span></a>
+                </li>
+                <li data-cat="Cultura" data-tags="patrimonio día del patrimonio bicentenario 2025 historia Uruguay museos identidad">
+                    <a href="#n6" data-id="n6"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Día del Patrimonio 2025</span><span class="meta">Cultura</span></a>
+                </li>
+                <li data-cat="Cultura" data-tags="Sanguinetti Memorias de una pasión libro arte Iturria Ahunchain Sala Azul Intendencia">
+                    <a href="#n7" data-id="n7"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Libro Sanguinetti</span><span class="meta">Cultura</span></a>
+                </li>
+                <li data-cat="Cultura" data-tags="Bellas Artes imputación injuria MEC justicia Wainstein profesor incitación al odio">
+                    <a href="#n8" data-id="n8"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Imputación Bellas Artes</span><span class="meta">Cultura</span></a>
+                </li>
+                <li data-cat="Cultura" data-tags="Movida Joven jóvenes artistas inscripciones convocatoria categorías arte">
+                    <a href="#n9" data-id="n9"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Movida Joven</span><span class="meta">Cultura</span></a>
+                </li>
+                <li data-cat="Cultura" data-tags="Rubén Rada El Negro música candombe fallecimiento duelo homenaje El Kinto Tótem OPA">
+                    <a href="#n10" data-id="n10"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Adiós a Rubén Rada</span><span class="meta">Cultura</span></a>
+                </li>
+            </ul>
+
+            <p id="sin-resultados" class="sin-resultados" hidden>No hay noticias con esa búsqueda. Prueba con otra palabra o <button type="button" id="limpiar-filtros">muestra todas</button>.</p>
+        </aside>
+
+        <!-- Visor principal: cada nota se muestra solo cuando está seleccionada -->
+        <div id="contenido-noticia" class="visor-noticia">
+
+            <section id="bienvenida-visor" class="bienvenida-visor">
+                <h1>Portal de Noticias</h1>
+                <p>Selecciona una noticia del menú lateral para leer el artículo completo. Si no sabes por dónde empezar, prueba con una de estas:</p>
+                <ul>
+                    <li><a href="#n1">El MIT Technology Review anticipa las tecnologías que transformarán los próximos años</a></li>
+                    <li><a href="#n2">Las baterías de sodio buscan desafiar el dominio del litio</a></li>
+                    <li><a href="#n10">Uruguay despide a Rubén Rada</a></li>
+                </ul>
+            </section>
+
+            <!-- ============ 1 ============ -->
+            <article class="nota" id="n1" tabindex="-1">
+                <span class="chip">Tecnología</span>
+                <h1>El MIT Technology Review anticipa las tecnologías que transformarán los próximos años</h1>
+                <p class="lead">La lista de 2026 pone el foco en infraestructuras de gran escala, nuevas fuentes de energía, medicina de precisión y debates éticos.</p>
+                <figure class="foto"><img src="image ia/noticia-1.jpg" alt="Imagen de la noticia sobre las tecnologías disruptivas de 2026" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>El MIT Technology Review presentó su esperada selección de las diez tecnologías más disruptivas de 2026. El anuncio se realizó el martes 10 de marzo durante el festival SXSW, en Austin, Estados Unidos, uno de los principales encuentros internacionales dedicados a la tecnología, la innovación, el cine, la música y la cultura.</p>
+                    <p>La lista de este año marca un cambio significativo respecto de ediciones anteriores. Aunque la inteligencia artificial continúa ocupando un lugar central, el análisis pone especial énfasis en infraestructuras de gran escala, nuevas fuentes de energía, medicina de precisión y tecnologías que plantean importantes debates éticos.</p>
+                    <p>Entre los avances destacados aparecen las baterías de sodio, los reactores nucleares modulares, la edición genética de precisión, los centros de datos diseñados para inteligencia artificial y las estaciones espaciales comerciales. También se incluyen los sistemas de captura de carbono y los llamados compañeros de inteligencia artificial, capaces de mantener conversaciones y ofrecer apoyo emocional.</p>
+                    <p>Según los editores de MIT Technology Review, la lista no busca simplemente anticipar tendencias, sino identificar desarrollos que ya alcanzaron la madurez suficiente para producir efectos concretos en la economía, la ciencia y la vida cotidiana.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="sig" href="#n2"><small>Siguiente</small><strong>Baterías de Sodio</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 2 ============ -->
+            <article class="nota" id="n2" tabindex="-1">
+                <span class="chip">Tecnología</span>
+                <h1>Las baterías de sodio buscan desafiar el dominio del litio</h1>
+                <p class="meta-nota">Innovación y energía</p>
+                <p class="lead">Más abundante y barato que el litio, el sodio puede abaratar el almacenamiento de energía a gran escala.</p>
+                <figure class="foto"><img src="image ia/noticia-2.jpg" alt="Imagen de la noticia sobre las baterías de sodio" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>Las baterías de sodio se convirtieron en una de las principales novedades de la lista de tecnologías disruptivas elaborada por el MIT Technology Review para 2026. El desarrollo es observado con especial interés porque podría reducir la dependencia mundial del litio, un recurso estratégico cuya demanda aumentó debido a la expansión de los vehículos eléctricos y las energías renovables.</p>
+                    <p>El sodio presenta una ventaja fundamental: es mucho más abundante y, en general, menos costoso que el litio. Esta característica podría facilitar la fabricación de baterías destinadas al almacenamiento de electricidad a gran escala, especialmente en sistemas vinculados con parques solares y eólicos. Además, este tipo de baterías ofrece un desempeño potencialmente más estable en temperaturas extremas y puede presentar mejores condiciones de seguridad en determinadas aplicaciones.</p>
+                    <p>Aunque todavía enfrenta desafíos relacionados con la densidad energética y la eficiencia, los avances recientes acercan la tecnología a una utilización comercial más amplia.</p>
+                    <p>El informe también destaca las baterías de estado sólido, que reemplazan los electrolitos líquidos por materiales sólidos. Esta innovación promete reducir riesgos de incendio, aumentar la autonomía y permitir cargas más rápidas. La combinación de ambas tecnologías podría modificar la estructura del mercado energético y acelerar la transición hacia sistemas de transporte y almacenamiento menos dependientes de combustibles fósiles.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n1"><small>Anterior</small><strong>MIT: Tecnologías 2026</strong></a>
+                    <a class="sig" href="#n3"><small>Siguiente</small><strong>Edición Genética</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 3 ============ -->
+            <article class="nota" id="n3" tabindex="-1">
+                <span class="chip">Tecnología</span>
+                <h1>La medicina de precisión y la edición genética abren nuevas posibilidades</h1>
+                <p class="meta-nota">Salud y bioética</p>
+                <p class="lead">El “base editing” permite corregir mutaciones puntuales del ADN, pero también plantea debates éticos.</p>
+                <figure class="foto"><img src="image ia/noticia-3.jpg" alt="Imagen de la noticia sobre medicina de precisión y edición genética" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>La medicina de precisión ocupa un lugar destacado entre las tecnologías que podrían generar mayores cambios durante los próximos años. El MIT Technology Review señaló especialmente los tratamientos genéticos hiperpersonalizados basados en técnicas como el “base editing”, una herramienta capaz de modificar una letra específica del ADN. A diferencia de métodos anteriores, esta tecnología busca corregir mutaciones puntuales sin alterar grandes segmentos del material genético.</p>
+                    <p>El objetivo es tratar enfermedades hereditarias poco frecuentes que, hasta hace pocos años, contaban con escasas alternativas terapéuticas. El avance abre la posibilidad de desarrollar tratamientos adaptados al perfil genético y molecular de cada paciente. En lugar de utilizar medicamentos diseñados para grandes grupos de población, la medicina podría avanzar hacia terapias específicas para determinadas mutaciones y características biológicas.</p>
+                    <p>Sin embargo, el progreso científico también plantea interrogantes de gran importancia. El informe menciona la puntuación de embriones, una técnica que utiliza información genética para estimar riesgos de enfermedades y ciertos rasgos complejos. Sus posibles aplicaciones generan preocupación por la discriminación, la desigualdad en el acceso y el riesgo de convertir la reproducción en un proceso de selección basado en criterios sociales o comerciales.</p>
+                    <p>El desafío será combinar innovación médica, regulación pública y principios bioéticos que protejan la dignidad y los derechos de las personas.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n2"><small>Anterior</small><strong>Baterías de Sodio</strong></a>
+                    <a class="sig" href="#n4"><small>Siguiente</small><strong>IA en Software</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 4 ============ -->
+            <article class="nota" id="n4" tabindex="-1">
+                <span class="chip">Tecnología</span>
+                <h1>La inteligencia artificial transforma el desarrollo de software y la infraestructura digital</h1>
+                <p class="meta-nota">Tecnología y transformación empresarial</p>
+                <p class="lead">Las herramientas que escriben código y los centros de datos de IA crecen, pero la revisión humana y el impacto ambiental siguen siendo desafíos.</p>
+                <figure class="foto"><img src="image ia/noticia-4.jpg" alt="Imagen de la noticia sobre inteligencia artificial y desarrollo de software" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>La inteligencia artificial generativa continúa modificando la industria tecnológica, pero en 2026 el MIT Technology Review puso el foco en dos desarrollos relacionados: las herramientas capaces de escribir código y los centros de datos de inteligencia artificial a hiperescala.</p>
+                    <p>Los nuevos sistemas de asistencia para programación ya no se limitan a sugerir líneas de código. También pueden analizar repositorios completos, identificar errores, proponer modificaciones y colaborar en distintas etapas del ciclo de vida del software. Para las empresas, esto representa una oportunidad para acelerar el desarrollo, automatizar tareas repetitivas y mejorar los procesos de prueba y mantenimiento.</p>
+                    <p>Sin embargo, la expansión de estas herramientas no elimina la necesidad de profesionales especializados. La revisión humana continúa siendo necesaria para controlar la seguridad, la calidad, la lógica de negocio, la privacidad y el cumplimiento de los requisitos del sistema. En este contexto, los equipos de testing y aseguramiento de la calidad deberán adaptar sus métodos para evaluar código generado o modificado por sistemas automáticos.</p>
+                    <p>El informe también destaca los centros de datos de inteligencia artificial a hiperescala. Estas instalaciones funcionan como grandes supercomputadoras coordinadas y requieren enormes cantidades de energía y agua para operar y refrigerar sus equipos. El crecimiento de la IA plantea así una tensión central: aumentar la capacidad tecnológica sin profundizar el impacto ambiental.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n3"><small>Anterior</small><strong>Edición Genética</strong></a>
+                    <a class="sig" href="#n5"><small>Siguiente</small><strong>Estaciones Espaciales</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 5 ============ -->
+            <article class="nota" id="n5" tabindex="-1">
+                <span class="chip">Tecnología</span>
+                <h1>Estaciones espaciales comerciales y captura de carbono ganan protagonismo</h1>
+                <p class="meta-nota">Ciencia, industria y sostenibilidad</p>
+                <p class="lead">Las estaciones espaciales privadas y las tecnologías que extraen CO₂ del aire pasan de la etapa piloto a las aplicaciones industriales.</p>
+                <figure class="foto"><img src="image ia/noticia-5.jpg" alt="Imagen de la noticia sobre estaciones espaciales comerciales y captura de carbono" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>La nueva lista del MIT Technology Review también identifica avances que podrían modificar la relación entre la actividad privada, el espacio y el cambio climático. Entre ellos se encuentran las estaciones espaciales comerciales y las tecnologías de eliminación de carbono a gran escala.</p>
+                    <p>Las estaciones espaciales privadas representan una transición desde un modelo dominado por gobiernos hacia una presencia comercial más amplia en la órbita terrestre. Estas instalaciones podrían funcionar como laboratorios para investigaciones científicas, plataformas de producción especializada y espacios destinados al turismo espacial. Su desarrollo, sin embargo, dependerá de la reducción de costos, la seguridad de las operaciones y la creación de normas internacionales claras.</p>
+                    <p>En paralelo, las tecnologías de captura directa de aire buscan extraer dióxido de carbono directamente de la atmósfera. Durante años, estos sistemas fueron considerados proyectos experimentales debido a sus elevados costos y a la gran cantidad de energía que requieren. El informe sostiene que algunos desarrollos comienzan a avanzar desde la etapa piloto hacia aplicaciones industriales.</p>
+                    <p>La eliminación de carbono no reemplaza la reducción de emisiones, pero podría complementar las políticas climáticas en sectores donde resulta difícil abandonar completamente los combustibles fósiles. Ambas tecnologías muestran una tendencia común: la innovación de 2026 se concentra cada vez más en infraestructuras complejas y en soluciones destinadas a problemas globales.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n4"><small>Anterior</small><strong>IA en Software</strong></a>
+                    <a class="sig" href="#n6"><small>Siguiente</small><strong>Día del Patrimonio 2025</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 6 ============ -->
+            <article class="nota" id="n6" tabindex="-1">
+                <span class="chip cul">Cultura</span>
+                <h1>“Bicentenario en todos los pagos”: así se vivió el Día del Patrimonio 2025 en Uruguay</h1>
+                <p class="lead">El 4 y 5 de octubre de 2025 se celebró el Día del Patrimonio en todo el país.</p>
+                <figure class="foto"><img src="image ia/noticia-6.jpg" alt="Imagen de la noticia sobre el Día del Patrimonio 2025" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>Uruguay volvió a celebrar una nueva edición del Día del Patrimonio con actividades destinadas a poner en valor la historia, la identidad y las expresiones culturales del país. El sábado 4 y domingo 5 de octubre se desarrolló la edición 2025 de esta tradicional celebración, que tuvo como lema “Bicentenario en todos los pagos”. La propuesta invitó a la población a acercarse a distintos espacios patrimoniales y culturales de todo el territorio nacional.</p>
+                    <p>Durante el fin de semana se llevaron adelante actividades en diferentes departamentos, permitiendo que ciudadanos y visitantes pudieran conocer lugares, historias y manifestaciones que forman parte de la memoria colectiva uruguaya.</p>
+                    <p>El lema elegido para esta edición puso el foco en la celebración del Bicentenario y buscó destacar la dimensión nacional del patrimonio. La expresión “en todos los pagos” funcionó como una invitación a reconocer que la construcción de la identidad uruguaya no se encuentra únicamente en Montevideo, sino que se desarrolla y conserva en cada localidad y departamento.</p>
+                    <p>A lo largo de las dos jornadas, los participantes pudieron acercarse a propuestas vinculadas con la arquitectura, la historia, las tradiciones, las artes y diferentes expresiones de la cultura nacional. La celebración permitió, además, que espacios habitualmente menos accesibles para el público pudieran abrir sus puertas y convertirse en lugares de encuentro.</p>
+                    <p>El Día del Patrimonio se consolidó así como una instancia que combina educación, recreación y participación ciudadana. Más allá de las actividades puntuales, la jornada busca generar conciencia sobre la importancia de preservar aquellos bienes materiales e inmateriales que permiten comprender el pasado del país.</p>
+                    <p>La edición 2025 volvió a mostrar el interés de la población por conocer y valorar el patrimonio uruguayo. Bajo el lema “Bicentenario en todos los pagos”, la celebración puso en primer plano la diversidad de historias y expresiones culturales que integran la identidad nacional.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n5"><small>Anterior</small><strong>Estaciones Espaciales</strong></a>
+                    <a class="sig" href="#n7"><small>Siguiente</small><strong>Libro Sanguinetti</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 7 ============ -->
+            <article class="nota" id="n7" tabindex="-1">
+                <span class="chip cul">Cultura</span>
+                <h1>Julio María Sanguinetti presenta su libro “Memorias de una pasión” en Montevideo</h1>
+                <p class="lead">El expresidente presentó una obra dedicada al arte, acompañado por el pintor Ignacio Iturria y el periodista Álvaro Ahunchain.</p>
+                <figure class="foto"><img src="image ia/noticia-7.jpg" alt="Imagen de la presentación del libro Memorias de una pasión" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>El expresidente Julio María Sanguinetti presentó en Montevideo su nuevo libro, “Memorias de una pasión”, una obra dedicada al arte y a la relación del autor con distintas expresiones artísticas. La presentación tuvo lugar el martes 8 de octubre a las 19 horas en la Sala Azul de la Intendencia de Montevideo. El encuentro reunió a figuras vinculadas al ámbito cultural y periodístico.</p>
+                    <p>Sanguinetti estuvo acompañado por el pintor Ignacio Iturria y el periodista Álvaro Ahunchain, quienes participaron de la presentación y aportaron sus propias miradas sobre la obra y sobre el vínculo del autor con el mundo del arte.</p>
+                    <p>“Memorias de una pasión” se presenta como un libro en el que Sanguinetti aborda una temática que ha formado parte de sus intereses a lo largo de los años. El arte ocupa un lugar central en la publicación, que se vincula con su mirada personal sobre artistas, obras y diferentes momentos de la cultura.</p>
+                    <p>La elección de la Sala Azul de la Intendencia de Montevideo como escenario permitió que el lanzamiento se desarrollara en un espacio estrechamente relacionado con la actividad cultural de la ciudad. La instancia funcionó también como un punto de encuentro entre referentes de diferentes ámbitos. La presencia de Iturria aportó la perspectiva de un artista plástico reconocido, mientras que la participación de Ahunchain incorporó una mirada desde el periodismo y la crítica cultural.</p>
+                    <p>El lanzamiento de “Memorias de una pasión” se incorporó así a la agenda cultural montevideana de octubre. El libro propone una aproximación personal de Sanguinetti al universo artístico y refleja el interés del exmandatario por una disciplina que, más allá de la política, ha ocupado un lugar significativo en su trayectoria e intereses.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n6"><small>Anterior</small><strong>Día del Patrimonio 2025</strong></a>
+                    <a class="sig" href="#n8"><small>Siguiente</small><strong>Imputación Bellas Artes</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 8 ============ -->
+            <article class="nota" id="n8" tabindex="-1">
+                <span class="chip cul">Cultura</span>
+                <h1>Imputan a profesor de Bellas Artes por injurias e incitación al odio contra directora del MEC</h1>
+                <p class="lead">Un docente de Bellas Artes fue imputado por expresiones dirigidas a la directora del Ministerio de Educación y Cultura.</p>
+                <figure class="foto"><img src="image ia/noticia-8.jpg" alt="Imagen de la noticia sobre la imputación a un profesor de Bellas Artes" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>Un profesor grado 5 de la Facultad de Bellas Artes fue imputado por la Justicia por un delito de injuria en concurso formal con un delito de incitación al odio, desprecio o violencia hacia determinadas personas.</p>
+                    <p>El caso se originó a partir de expresiones realizadas por el docente contra la directora del Ministerio de Educación y Cultura (MEC), Mariana Wainstein. De acuerdo con la información conocida sobre el caso, el profesor calificó de “nazi” a Wainstein.</p>
+                    <p>Las expresiones derivaron en una instancia judicial en la que se analizó la responsabilidad del docente y la naturaleza de sus manifestaciones.</p>
+                    <p>La imputación supone el inicio de un proceso judicial y no implica una condena.</p>
+                    <!-- COMPLETAR: el texto original estaba cortado después de "La imputación supone el inicio de un proceso judicial y se vincu…" -->
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n7"><small>Anterior</small><strong>Libro Sanguinetti</strong></a>
+                    <a class="sig" href="#n9"><small>Siguiente</small><strong>Movida Joven</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 9 ============ -->
+            <article class="nota" id="n9" tabindex="-1">
+                <span class="chip cul">Cultura</span>
+                <h1>Abiertas inscripciones para Movida Joven: artistas de todo el país pueden participar hasta el 15 de setiembre</h1>
+                <p class="lead">Jóvenes artistas de todo Uruguay pueden postularse en más de diez categorías a través del sitio oficial.</p>
+                <figure class="foto"><img src="image ia/noticia-9.jpg" alt="Imagen de la convocatoria de Movida Joven" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>Los jóvenes artistas de todo Uruguay tienen una nueva oportunidad para presentar sus trabajos y formar parte de Movida Joven. Las inscripciones para participar en la iniciativa permanecen abiertas hasta el 15 de setiembre y se realizan a través del sitio web oficial del evento.</p>
+                    <p>La propuesta busca promover y visibilizar el talento joven en diferentes disciplinas artísticas. Para ello, Movida Joven cuenta con más de diez categorías, lo que permite la participación de jóvenes con distintos intereses y perfiles creativos.</p>
+                    <p>La iniciativa tiene como uno de sus principales objetivos generar espacios para que nuevos artistas puedan mostrar sus producciones, desarrollar sus capacidades y entrar en contacto con otros jóvenes que también trabajan en el ámbito cultural. De esta manera, el programa funciona como una plataforma para estimular la creación y la participación artística.</p>
+                    <p>Las categorías disponibles abarcan diferentes disciplinas, permitiendo que la convocatoria alcance a un público amplio. La diversidad de opciones busca contemplar distintas formas de expresión y brindar oportunidades a jóvenes que se desempeñan en áreas artísticas variadas.</p>
+                    <p>Uno de los aspectos destacados de la convocatoria es su alcance nacional. Artistas de todo el país pueden postularse, lo que permite que la propuesta no quede limitada a Montevideo y que jóvenes de distintos departamentos tengan la posibilidad de participar.</p>
+                    <p>Las inscripciones estarán disponibles hasta el 15 de setiembre mediante la plataforma oficial de Movida Joven. Los interesados deberán consultar allí las condiciones y requisitos correspondientes a cada categoría antes de completar su postulación.</p>
+                    <p>La convocatoria representa una oportunidad para quienes buscan dar sus primeros pasos, fortalecer su trayectoria o simplemente compartir una producción artística con nuevos públicos. Con una propuesta orientada a la participación y al desarrollo cultural, Movida Joven continúa apostando por las nuevas generaciones de artistas uruguayos. La convocatoria busca convertir el talento joven en protagonista y generar espacios donde la creatividad pueda encontrar reconocimiento y nuevas oportunidades.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n8"><small>Anterior</small><strong>Imputación Bellas Artes</strong></a>
+                    <a class="sig" href="#n10"><small>Siguiente</small><strong>Adiós a Rubén Rada</strong></a>
+                </nav>
+            </article>
+
+            <!-- ============ 10 ============ -->
+            <article class="nota" id="n10" tabindex="-1">
+                <span class="chip cul">Cultura</span>
+                <h1>Uruguay despide a Rubén Rada, una de las grandes figuras de la música nacional</h1>
+                <p class="lead">El músico, cantante y compositor uruguayo falleció a los 83 años tras permanecer internado durante un mes por una neumonía. El Gobierno decretó duelo oficial y sus restos son velados en el Palacio Legislativo.</p>
+                <figure class="foto"><img src="image ia/noticia-10.jpg" alt="Imagen de Rubén Rada" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+                <div class="cuerpo">
+                    <p>Rubén “El Negro” Rada, uno de los máximos referentes de la música popular uruguaya, falleció este miércoles 26 de agosto a los 83 años en Montevideo. La noticia fue comunicada por su familia, que informó que el artista había atravesado durante un mes una neumonía y sus complicaciones.</p>
+                    <p>Nacido el 16 de julio de 1943 en el Barrio Sur de Montevideo, Rada comenzó su vínculo con la música desde muy joven, participando en comparsas. A lo largo de más de seis décadas de trayectoria, se convirtió en una figura fundamental del candombe y en uno de los artistas que más contribuyeron a llevar los sonidos uruguayos al exterior.</p>
+                    <p>Su carrera estuvo marcada por la experimentación y la mezcla de géneros. Integró grupos históricos como El Kinto, Tótem y OPA, y posteriormente desarrolló una extensa carrera como solista, fusionando candombe con rock, jazz, funk, pop y otros estilos. Su discografía supera los treinta álbumes e incluye canciones emblemáticas como “Mi país”, “Candombe para Gardel” y “Muriendo de plena”. En 2011 recibió el Premio a la Excelencia Musical de la Academia Latina de la Grabación, en reconocimiento a su trayectoria y a su aporte a la música latinoamericana.</p>
+                    <p>Tras su fallecimiento, el Poder Ejecutivo decretó duelo oficial para este jueves 27 de agosto. El velatorio se realiza en el Salón de los Pasos Perdidos del Palacio Legislativo, donde familiares, amigos, músicos y admiradores se acercan para despedirlo.</p>
+                    <p>La partida de Rada deja un profundo vacío en la cultura uruguaya, pero también un legado que continuará presente en las nuevas generaciones y en los tambores que forman parte de la identidad del país.</p>
+                </div>
+                <nav class="pasar" aria-label="Otras noticias">
+                    <a class="ant" href="#n9"><small>Anterior</small><strong>Movida Joven</strong></a>
+                </nav>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor pie-interior">
+            <p class="pie-marca">Jóvenes Creativos</p>
+            <nav aria-label="Pie de página">
+                <a href="index.html">Inicio</a>
+                <a href="noticias.html">Noticias</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+            <p class="pie-legal">&copy; 2026 Jóvenes Creativos - Proyecto Final Avanzado</p>
+        </div>
+    </footer>
+
+    <script src="noticias.js"></script>
+</body>
+</html>

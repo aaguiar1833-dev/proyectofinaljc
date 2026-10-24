@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portal de noticias que conecta tecnología, ciencia, innovación y cultura. Catálogo completo, asistente virtual de búsqueda, contacto, panel de administración y apéndice.">
+<title>Jóvenes Creativos · Portal de Noticias, Tecnología y Cultura</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- ===================== CABECERA ===================== -->
+<header class="cabecera">
+  <div class="cabecera-interior">
+    <a class="logo-container" data-pagina="inicio" aria-label="Jóvenes Creativos, ir al inicio">
+      <img src="image ia/logo.png" alt="Logo de Jóvenes Creativos" class="imagen-logo" onerror="this.remove()">
+      <span class="marca">Jóvenes Creativos</span>
+    </a>
+
+    <nav class="menu-principal" aria-label="Principal">
+      <ul>
+        <li><a data-pagina="inicio" data-nav="inicio" aria-current="page">Inicio</a></li>
+        <li><a data-pagina="noticias" data-nav="noticias">Noticias</a></li>
+        <li><a data-pagina="asistente" data-nav="asistente">Asistente</a></li>
+        <li><a data-pagina="contacto" data-nav="contacto">Contacto</a></li>
+        <li><a data-pagina="admin" data-nav="admin">Admin</a></li>
+        <li><a data-pagina="apendice" data-nav="apendice">Apéndice</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ================= PÁGINA: INICIO ================= -->
+  <div class="pagina activa" id="pagina-inicio">
+
+    <section class="bienvenida contenedor">
+      <div class="bienvenida-texto">
+        <span class="eyebrow">Portal digital · Edición 2026</span>
+        <h1>«Tecnología y cultura, en la misma conversación»</h1>
+        <p class="lead">
+          Nuestro portal nace de la idea de crear un medio digital que vaya más allá de las noticias
+          tradicionales. El objetivo es conectar tecnología, ciencia, innovación y cultura en un mismo espacio,
+          con una mirada cercana, dinámica y accesible.
+        </p>
+        <div class="acciones">
+          <a class="boton boton-primario" data-pagina="noticias">Leer las noticias</a>
+          <a class="boton boton-secundario" data-pagina="asistente">Preguntar al asistente</a>
+        </div>
+      </div>
+
+      <div class="duo" aria-hidden="true">
+        <span class="circulo c-tec"></span>
+        <span class="circulo c-cul"></span>
+        <span class="interseccion"></span>
+        <b class="etq etq-tec">Tecnología</b>
+        <b class="etq etq-portal">Portal</b>
+        <b class="etq etq-cul">Cultura</b>
+      </div>
+    </section>
+
+    <section class="por-que franja">
+      <div class="contenedor por-que-grid">
+        <div>
+          <span class="eyebrow">Nuestra mirada</span>
+          <h2>¿Por qué la creamos?</h2>
+          <p class="texto-largo">
+            Creemos que atender los cambios tecnológicos también significa comprender cómo transforman la sociedad,
+            nuestra forma de comunicarnos, trabajar, crear y vivir. Por eso contamos tendencias y acontecimientos
+            relevantes desde una mirada cercana, dinámica y accesible.
+          </p>
+        </div>
+
+        <ul class="pilares">
+          <li>
+            <strong>Proyecto final avanzado</strong>
+            <span>Un recorrido por las ideas, los avances y las expresiones que marcan el presente.</span>
+          </li>
+          <li>
+            <strong>Ciencia e innovación</strong>
+            <span>Del laboratorio a la vida cotidiana, sin tecnicismos.</span>
+          </li>
+          <li>
+            <strong>Cultura cercana</strong>
+            <span>Patrimonio, música y proyectos jóvenes de nuestro entorno.</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ultimas contenedor" aria-labelledby="titulo-ultimas">
+      <span class="eyebrow">Selección del día</span>
+      <h2 id="titulo-ultimas">Lo que puedes leer hoy</h2>
+
+      <div class="temas">
+        <div class="tema tema-tec">
+          <h3>Tecnología</h3>
+          <ul class="lista-notas" data-lista="Tecnología"></ul>
+        </div>
+        <div class="tema tema-cul">
+          <h3>Cultura</h3>
+          <ul class="lista-notas" data-lista="Cultura"></ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ================= PÁGINA: NOTICIAS ================= -->
+  <div class="pagina" id="pagina-noticias">
+    <section class="seccion-noticias">
+      <div class="contenedor">
+        <div class="titulo-seccion">
+          <div>
+            <span class="eyebrow">Catálogo completo</span>
+            <h2>Portal de Noticias</h2>
+          </div>
+        </div>
+
+        <div class="contenedor-noticias-layout">
+          <aside class="sidebar-noticias" aria-label="Listado de noticias">
+            <h2>Categorías y noticias</h2>
+            <label class="visualmente-oculto" for="buscador">Buscar una noticia</label>
+            <input type="search" id="buscador" placeholder="Buscar una noticia…" autocomplete="off">
+
+            <div class="filtros" role="group" aria-label="Filtrar por categoría">
+              <button type="button" class="filtro" data-filtro="todas" aria-pressed="true">Todas</button>
+              <button type="button" class="filtro" data-filtro="Tecnología" aria-pressed="false">Tecnología</button>
+              <button type="button" class="filtro" data-filtro="Cultura" aria-pressed="false">Cultura</button>
+            </div>
+
+            <ul id="lista-noticias" class="lista-lateral"></ul>
+
+            <p id="sin-resultados" class="sin-resultados" hidden>
+              No hay noticias con esa búsqueda. Probá con otra palabra o
+              <button type="button" id="limpiar-filtros">mostrá todas</button>.
+            </p>
+          </aside>
+
+          <div id="contenido-noticia" class="visor-noticia">
+            <section id="bienvenida-visor" class="bienvenida-visor">
+              <h1>Portal de Noticias</h1>
+              <p>
+                Seleccioná una noticia del menú lateral para leer el artículo completo. Si no sabés por dónde
+                empezar, probá con una de estas:
+              </p>
+              <ul id="sugerencias-inicio"></ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PÁGINA: ASISTENTE ================= -->
+  <div class="pagina" id="pagina-asistente">
+    <section class="franja-celeste">
+      <div class="contenedor asistente-grid">
+        <div>
+          <span class="eyebrow">Inteligencia artificial</span>
+          <h2>Asistente Virtual de Noticias</h2>
+          <p>
+            Preguntale al asistente sobre cualquier tema publicado en el portal. Busca por palabra clave,
+            categoría o concepto, y te devuelve las noticias relacionadas con un resumen.
+          </p>
+          <p>Podés escribir una pregunta libre o usar alguna de las sugerencias para empezar.</p>
+          <div class="sugerencias" aria-label="Preguntas sugeridas">
+            <button type="button" class="chip-sugerida" data-pregunta="baterías de sodio">Baterías de sodio</button>
+            <button type="button" class="chip-sugerida" data-pregunta="edición genética">Edición genética</button>
+            <button type="button" class="chip-sugerida" data-pregunta="patrimonio">Día del Patrimonio</button>
+            <button type="button" class="chip-sugerida" data-pregunta="Rubén Rada">Rubén Rada</button>
+            <button type="button" class="chip-sugerida" data-pregunta="inteligencia artificial">IA</button>
+            <button type="button" class="chip-sugerida" data-pregunta="tecnología">Toda tecnología</button>
+            <button type="button" class="chip-sugerida" data-pregunta="cultura">Toda cultura</button>
+          </div>
+        </div>
+
+        <div class="asistente-panel">
+          <label for="pregunta-ia">Tu búsqueda</label>
+          <div class="asistente-campo">
+            <input type="text" id="pregunta-ia" placeholder="Ej: ¿qué noticias hay sobre baterías?" autocomplete="off">
+            <button type="button" id="btn-consultar">Buscar</button>
+          </div>
+          <div id="respuesta-ia" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PÁGINA: CONTACTO ================= -->
+  <div class="pagina" id="pagina-contacto">
+    <section class="contacto">
+      <div class="contenedor">
+        <span class="eyebrow">Hablemos</span>
+        <h2>Contacto</h2>
+        <p class="lead" style="max-width:62ch">
+          «¿Tenés una noticia para compartir, una corrección o una propuesta de colaboración?»
+          Escribinos por cualquiera de estos canales o completá el formulario.
+        </p>
+
+        <div class="contacto-grid" style="margin-top:34px">
+          <div>
+            <ul class="datos-contacto">
+              <li>
+                <span class="icono" aria-hidden="true">✉</span>
+                <div>
+                  <strong>Correo general</strong>
+                  <a href="mailto:aaguiar1833@gmail.com">aaguiar1833@gmail.com</a>
+                </div>
+              </li>
+              <li>
+                <span class="icono" aria-hidden="true">📝</span>
+                <div>
+                  <strong>Redacción y prensa</strong>
+                  <a href="mailto:aaguiar1833@gmail.com">aaguiar1833@gmail.com</a>
+                </div>
+              </li>
+              <li>
+                <span class="icono" aria-hidden="true">☎</span>
+                <div>
+                  <strong>Teléfono</strong>
+                  <a href="tel:24860226">2486 0226</a>
+                  <span style="display:block;color:var(--tinta-2);font-size:.85rem">Lunes a viernes, 9:00 a 18:00</span>
+                </div>
+              </li>
+              <li>
+                <span class="icono cul" aria-hidden="true">📍</span>
+                <div>
+                  <strong>Redacción</strong>
+                  <span>Neyra 3649</span>
+                  <span style="display:block;color:var(--tinta-2);font-size:.85rem">Código postal 11600</span>
+                </div>
+              </li>
+              <li>
+                <span class="icono cul" aria-hidden="true">💬</span>
+                <div>
+                  <strong>WhatsApp de la comunidad</strong>
+                  <a href="tel:091514474">091 514 474</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="tarjeta-form">
+            <h3 style="margin-bottom:18px">Enviar un mensaje</h3>
+
+            <form id="form-contacto" novalidate>
+              <div class="campo-doble">
+                <div class="campo">
+                  <label for="c-nombre">Nombre y apellido</label>
+                  <input type="text" id="c-nombre" name="nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="campo">
+                  <label for="c-email">Correo electrónico</label>
+                  <input type="email" id="c-email" name="email" placeholder="nombre@correo.com" required>
+                </div>
+              </div>
+
+              <div class="campo">
+                <label for="c-asunto">Asunto</label>
+                <select id="c-asunto" name="asunto">
+                  <option>Consulta general</option>
+                  <option>Propuesta de nota o entrevista</option>
+                  <option>Corrección o errata</option>
+                  <option>Colaboración o voluntariado</option>
+                  <option>Publicidad y alianzas</option>
+                  <option>Problema técnico en el sitio</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+
+              <div class="campo">
+                <label for="c-mensaje">Mensaje</label>
+                <textarea id="c-mensaje" name="mensaje" placeholder="Contanos en qué podemos ayudarte…" required></textarea>
+              </div>
+
+              <label class="consentimiento" for="c-acepto">
+                <input type="checkbox" id="c-acepto" required>
+                <span>Acepto que mis datos sean utilizados únicamente para responder esta consulta.</span>
+              </label>
+
+              <button type="submit" class="boton boton-primario" style="width:100%;justify-content:center">
+                Enviar mensaje
+              </button>
+
+              <div id="respuesta-contacto" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PÁGINA: ADMIN ================= -->
+  <div class="pagina" id="pagina-admin">
+    <section class="admin">
+      <div class="contenedor">
+        <span class="eyebrow">Zona restringida</span>
+        <h2>Panel de administración</h2>
+        <p style="max-width:66ch">
+          Desde este panel se publican nuevas notas en el catálogo del portal. Los artículos creados aquí
+          aparecen de inmediato en el menú lateral y en el visor de noticias.
+        </p>
+
+        <div class="estadisticas">
+          <div class="estadistica"><b id="stat-total">10</b><span>Noticias</span></div>
+          <div class="estadistica"><b id="stat-tec">5</b><span>Tecnología</span></div>
+          <div class="estadistica"><b id="stat-cul">5</b><span>Cultura</span></div>
+          <div class="estadistica"><b id="stat-msg">0</b><span>Mensajes</span></div>
+        </div>
+
+        <div class="admin-grid">
+          <div class="panel-oscuro">
+            <h3>Publicar una noticia</h3>
+            <form id="form-admin" novalidate>
+              <div class="campo">
+                <label for="a-titulo">Título</label>
+                <input type="text" id="a-titulo" placeholder="Ej: Nuevos avances en energía solar" required>
+              </div>
+              <div class="campo-doble">
+                <div class="campo">
+                  <label for="a-categoria">Categoría</label>
+                  <select id="a-categoria">
+                    <option value="Tecnología">Tecnología</option>
+                    <option value="Cultura">Cultura</option>
+                  </select>
+                </div>
+                <div class="campo">
+                  <label for="a-imagen">Archivo de imagen</label>
+                  <input type="text" id="a-imagen" placeholder="image ia/noticia-x.jpg">
+                </div>
+              </div>
+              <div class="campo">
+                <label for="a-etiquetas">Etiquetas (separadas por coma)</label>
+                <input type="text" id="a-etiquetas" placeholder="energía, solar, innovación">
+              </div>
+              <div class="campo">
+                <label for="a-resumen">Resumen / copete</label>
+                <textarea id="a-resumen" style="min-height:80px" placeholder="Una o dos líneas que resuman la noticia…" required></textarea>
+              </div>
+              <div class="campo">
+                <label for="a-cuerpo">Cuerpo de la noticia</label>
+                <textarea id="a-cuerpo" placeholder="Escribí los párrafos. Separá cada párrafo con un salto de línea." required></textarea>
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button type="submit" class="boton boton-claro">Publicar noticia</button>
+                <button type="reset" class="boton boton-fantasma">Limpiar formulario</button>
+              </div>
+              <div id="respuesta-admin" aria-live="polite"></div>
+            </form>
+          </div>
+
+          <div class="panel-oscuro">
+            <h3>Noticias publicadas desde el panel</h3>
+            <table class="tabla-admin">
+              <thead>
+                <tr>
+                  <th scope="col">Título</th>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo-tabla-admin">
+                <tr><td class="vacio" colspan="3">Todavía no publicaste noticias desde este panel.</td></tr>
+              </tbody>
+            </table>
+            <p class="nota-admin">
+              Nota: las publicaciones se guardan en el almacenamiento local del navegador. Si borrás los datos
+              del sitio, se eliminarán. Las diez noticias originales del portal no pueden borrarse.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ================= PÁGINA: APÉNDICE ================= -->
+  <div class="pagina" id="pagina-apendice">
+    <section class="apendice">
+      <div class="contenedor">
+        <span class="eyebrow">Documentación del proyecto</span>
+        <h2>Apéndice</h2>
+        <p class="lead" style="max-width:66ch">
+          Material complementario: glosario de términos, fuentes consultadas y criterios de accesibilidad
+          aplicados al portal.
+        </p>
+
+        <div class="apendice-grid">
+          <div class="bloque-apendice">
+            <h3>A · Glosario de términos</h3>
+            <dl class="glosario">
+              <dt>Base editing (edición de bases)</dt>
+              <dd>Técnica de edición genética que modifica una letra específica del ADN sin cortar la doble cadena, lo que reduce efectos no deseados.</dd>
+              <dt>Batería de estado sólido</dt>
+              <dd>Batería que reemplaza el electrolito líquido por un material sólido. Promete mayor seguridad, más autonomía y cargas más rápidas.</dd>
+              <dt>Batería de sodio</dt>
+              <dd>Acumulador que utiliza sodio en lugar de litio. Es más abundante y económico, aunque con menor densidad energética.</dd>
+              <dt>Captura de carbono</dt>
+              <dd>Conjunto de tecnologías que retiran dióxido de carbono de la atmósfera o de fuentes industriales y lo almacenan de forma segura.</dd>
+              <dt>Centro de datos de hiperescala</dt>
+              <dd>Instalación de gran tamaño diseñada para alojar miles de servidores, habitualmente asociada al entrenamiento de modelos de inteligencia artificial.</dd>
+              <dt>Medicina de precisión</dt>
+              <dd>Enfoque médico que adapta los tratamientos al perfil genético y molecular de cada paciente.</dd>
+              <dt>SXSW</dt>
+              <dd>Festival anual que se realiza en Austin, Texas, dedicado a la tecnología, el cine, la música y la cultura.</dd>
+              <dt>MIT Technology Review</dt>
+              <dd>Publicación del Instituto Tecnológico de Massachusetts especializada en tecnología e innovación. Elabora anualmente su lista de tecnologías disruptivas.</dd>
+              <dt>Movida Joven</dt>
+              <dd>Programa de convocatoria y circulación de propuestas artísticas creadas por jóvenes.</dd>
+            </dl>
+          </div>
+
+          <div class="bloque-apendice">
+            <h3>B · Fuentes y referencias</h3>
+            <ul class="lista-fuentes">
+              <li><strong>MIT Technology Review</strong><br>Selección anual de las diez tecnologías más disruptivas. Anuncio presentado durante el festival SXSW, Austin, marzo de 2026.</li>
+              <li><strong>Cobertura propia del portal</strong><br>Notas redactadas por el equipo de Jóvenes Creativos a partir de la lista del MIT y de agenda cultural local.</li>
+              <li><strong>Agenda cultural</strong><br>Programación del Día del Patrimonio, convocatorias artísticas juveniles y actividades de presentación de libros.</li>
+              <li><strong>Material de archivo</strong><br>Registros sonoros y audiovisuales de música popular uruguaya consultados para la nota de homenaje.</li>
+              <li><strong>Nota metodológica</strong><br>Las imágenes del portal son de carácter ilustrativo y se alojan en la carpeta <code>image ia/</code>. Cuando una imagen no está disponible, el sistema muestra un espacio reservado.</li>
+            </ul>
+          </div>
+
+          <div class="bloque-apendice">
+            <h3>C · Accesibilidad aplicada</h3>
+            <ul class="lista-fuentes">
+              <li>Enlace «Saltar al contenido» al comienzo del documento.</li>
+              <li>Estructura semántica con <code>header</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>aside</code> y <code>footer</code>.</li>
+              <li>Uso de <code>aria-current</code>, <code>aria-pressed</code> y <code>aria-live</code> para estados dinámicos.</li>
+              <li>Contraste de color verificado y foco visible en todos los controles.</li>
+              <li>Respeto por <code>prefers-reduced-motion</code> para quienes prefieren menos animaciones.</li>
+              <li>Textos alternativos descriptivos en todas las imágenes.</li>
+              <li>Navegación por teclado en todos los elementos interactivos.</li>
+            </ul>
+          </div>
+
+          <div class="bloque-apendice">
+            <h3>D · Cómo usar el asistente</h3>
+            <ul class="lista-fuentes">
+              <li>Escribí una palabra clave (por ejemplo: <em>baterías</em>, <em>Rada</em>, <em>patrimonio</em>).</li>
+              <li>También podés escribir una categoría completa: <em>tecnología</em> o <em>cultura</em>.</li>
+              <li>El asistente devuelve todas las noticias que contienen ese término, con un resumen y un enlace para leerlas.</li>
+              <li>Si no encuentra coincidencias, sugiere probar con otro término.</li>
+            </ul>
+
+            <p class="creditos">
+              <strong>Créditos:</strong> «Proyecto desarrollado por Ana Laura Aguiar en el marco del proyecto
+              final avanzado del programa "Jóvenes creativos", 2026. Proyecto final avanzado.»
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor pie-interior">
+    <p class="pie-marca">Jóvenes Creativos</p>
+    <nav aria-label="Pie de página">
+      <a data-pagina="inicio">Inicio</a>
+      <a data-pagina="noticias">Noticias</a>
+      <a data-pagina="asistente">Asistente</a>
+      <a data-pagina="contacto">Contacto</a>
+      <a data-pagina="admin">Admin</a>
+      <a data-pagina="apendice">Apéndice</a>
+    </nav>
+    <p class="pie-legal">&copy; 2026 Jóvenes Creativos · Proyecto Final Avanzado · Montevideo, Uruguay</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

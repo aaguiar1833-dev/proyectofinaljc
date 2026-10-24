@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Catálogo de noticias de tecnología, ciencia y cultura.">
+
+    <title>Catálogo de Noticias - Portal Digital</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+    <a class="saltar" href="#contenido-noticia">Saltar a la noticia</a>
+
+
+
+    <header class="cabecera">
+
+        <div class="cabecera-interior">
+
+            <a class="logo-container" href="index.html" aria-label="Jóvenes Creativos, ir al inicio">
+
+                <img src="image ia/logo.png" alt="Logo de la marca" class="imagen-logo" onerror="this.remove()">
+
+                <span class="marca">Jóvenes Creativos</span>
+
+            </a>
+
+            <nav class="menu-principal" aria-label="Principal">
+
+                <ul>
+
+                    <li><a href="index.html">Inicio</a></li>
+
+                    <li><a href="noticias.html" class="active" aria-current="page">Noticias</a></li>
+
+                    <li><a href="contacto.html">Contacto</a></li>
+
+                    <li><a href="admin.html">Admin</a></li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="contenedor contenedor-noticias-layout">
+
+        <!-- Menú lateral con el listado de noticias -->
+
+        <aside class="sidebar-noticias" aria-label="Listado de noticias">
+
+            <h2>Categorías y Noticias</h2>
+
+
+
+            <label class="visualmente-oculto" for="buscador">Buscar una noticia</label>
+
+            <input type="search" id="buscador" placeholder="Buscar una noticia" autocomplete="off">
+
+
+
+            <div class="filtros" role="group" aria-label="Filtrar por categoría">
+
+                <button type="button" class="filtro" data-filtro="todas" aria-pressed="true">Todas</button>
+
+                <button type="button" class="filtro" data-filtro="Tecnología" aria-pressed="false">Tecnología</button>
+
+                <button type="button" class="filtro" data-filtro="Cultura" aria-pressed="false">Cultura</button>
+
+            </div>
+
+
+
+            <ul id="lista-noticias" class="lista-lateral">
+
+                <li data-cat="Tecnología" data-tags="MIT Technology Review tecnologías 2026 SXSW innovación disruptivas">
+
+                    <a href="#n1" data-id="n1"><span class="punto" aria-hidden="true"></span><span class="nombre">MIT: Tecnologías 2026</span><span class="meta">Tecnología</span></a>
+
+                </li>
+
+                <li data-cat="Tecnología" data-tags="baterías sodio litio energía almacenamiento renovables estado sólido vehículos eléctricos">
+
+                    <a href="#n2" data-id="n2"><span class="punto" aria-hidden="true"></span><span class="nombre">Baterías de Sodio</span><span class="meta">Tecnología</span></a>
+
+                </li>
+
+                <li data-cat="Tecnología" data-tags="edición genética base editing ADN genes medicina de precisión terapia embriones bioética salud">
+
+                    <a href="#n3" data-id="n3"><span class="punto" aria-hidden="true"></span><span class="nombre">Edición Genética</span><span class="meta">Tecnología</span></a>
+
+                </li>
+
+                <li data-cat="Tecnología" data-tags="IA inteligencia artificial software programación código centros de datos testing hiperescala">
+
+                    <a href="#n4" data-id="n4"><span class="punto" aria-hidden="true"></span><span class="nombre">IA en Software</span><span class="meta">Tecnología</span></a>
+
+                </li>
+
+                <li data-cat="Tecnología" data-tags="espacio estaciones espaciales órbita captura de carbono CO2 clima sostenibilidad turismo espacial">
+
+                    <a href="#n5" data-id="n5"><span class="punto" aria-hidden="true"></span><span class="nombre">Estaciones Espaciales</span><span class="meta">Tecnología</span></a>
+
+                </li>
+
+                <li data-cat="Cultura" data-tags="patrimonio día del patrimonio bicentenario 2025 historia Uruguay museos identidad">
+
+                    <a href="#n6" data-id="n6"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Día del Patrimonio 2025</span><span class="meta">Cultura</span></a>
+
+                </li>
+
+                <li data-cat="Cultura" data-tags="Sanguinetti Memorias de una pasión libro arte Iturria Ahunchain Sala Azul Intendencia">
+
+                    <a href="#n7" data-id="n7"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Libro Sanguinetti</span><span class="meta">Cultura</span></a>
+
+                </li>
+
+                <li data-cat="Cultura" data-tags="Bellas Artes imputación injuria MEC justicia Wainstein profesor incitación al odio">
+
+                    <a href="#n8" data-id="n8"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Imputación Bellas Artes</span><span class="meta">Cultura</span></a>
+
+                </li>
+
+                <li data-cat="Cultura" data-tags="Movida Joven jóvenes artistas inscripciones convocatoria categorías arte">
+
+                    <a href="#n9" data-id="n9"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Movida Joven</span><span class="meta">Cultura</span></a>
+
+                </li>
+
+                <li data-cat="Cultura" data-tags="Rubén Rada El Negro música candombe fallecimiento duelo homenaje El Kinto Tótem OPA">
+
+                    <a href="#n10" data-id="n10"><span class="punto cul" aria-hidden="true"></span><span class="nombre">Adiós a Rubén Rada</span><span class="meta">Cultura</span></a>
+
+                </li>
+
+            </ul>
+
+
+
+            <p id="sin-resultados" class="sin-resultados" hidden>No hay noticias con esa búsqueda. Prueba con otra palabra o <button type="button" id="limpiar-filtros">muestra todas</button>.</p>
+
+        </aside>
+
+
+
+        <!-- Visor principal: cada nota se muestra solo cuando está seleccionada -->
+
+        <div id="contenido-noticia" class="visor-noticia">
+
+
+
+            <section id="bienvenida-visor" class="bienvenida-visor">
+
+                <h1>Portal de Noticias</h1>
+
+                <p>Selecciona una noticia del menú lateral para leer el artículo completo. Si no sabes por dónde empezar, prueba con una de estas:</p>
+
+                <ul>
+
+                    <li><a href="#n1">El MIT Technology Review anticipa las tecnologías que transformarán los próximos años</a></li>
+
+                    <li><a href="#n2">Las baterías de sodio buscan desafiar el dominio del litio</a></li>
+
+                    <li><a href="#n10">Uruguay despide a Rubén Rada</a></li>
+
+                </ul>
+
+            </section>
+
+
+
+            <!-- ============ 1 ============ -->
+
+            <article class="nota" id="n1" tabindex="-1">
+
+                <span class="chip">Tecnología</span>
+
+                <h1>El MIT Technology Review anticipa las tecnologías que transformarán los próximos años</h1>
+
+                <p class="lead">La lista de 2026 pone el foco en infraestructuras de gran escala, nuevas fuentes de energía, medicina de precisión y debates éticos.</p>
+
+                <figure class="foto"><img src="image ia/noticia-1.jpg" alt="Imagen de la noticia sobre las tecnologías disruptivas de 2026" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+
+                <div class="cuerpo">
+
+                    <p>El MIT Technology Review presentó su esperada selección de las diez tecnologías más disruptivas de 2026. El anuncio se realizó el martes 10 de marzo durante el festival SXSW, en Austin, Estados Unidos, uno de los principales encuentros internacionales dedicados a la tecnología, la innovación, el cine, la música y la cultura.</p>
+
+                    <p>La lista de este año marca un cambio significativo respecto de ediciones anteriores. Aunque la inteligencia artificial continúa ocupando un lugar central, el análisis pone especial énfasis en infraestructuras de gran escala, nuevas fuentes de energía, medicina de precisión y tecnologías que plantean importantes debates éticos.</p>
+
+                    <p>Entre los avances destacados aparecen las baterías de sodio, los reactores nucleares modulares, la edición genética de precisión, los centros de datos diseñados para inteligencia artificial y las estaciones espaciales comerciales. También se incluyen los sistemas de captura de carbono y los llamados compañeros de inteligencia artificial, capaces de mantener conversaciones y ofrecer apoyo emocional.</p>
+
+                    <p>Según los editores de MIT Technology Review, la lista no busca simplemente anticipar tendencias, sino identificar desarrollos que ya alcanzaron la madurez suficiente para producir efectos concretos en la economía, la ciencia y la vida cotidiana.</p>
+
+                </div>
+
+                <nav class="pasar" aria-label="Otras noticias">
+
+                    <a class="sig" href="#n2"><small>Siguiente</small><strong>Baterías de Sodio</strong></a>
+
+                </nav>
+
+            </article>
+
+
+
+            <!-- ============ 2 ============ -->
+
+            <article class="nota" id="n2" tabindex="-1">
+
+                <span class="chip">Tecnología</span>
+
+                <h1>Las baterías de sodio buscan desafiar el dominio del litio</h1>
+
+                <p class="meta-nota">Innovación y energía</p>
+
+                <p class="lead">Más abundante y barato que el litio, el sodio puede abaratar el almacenamiento de energía a gran escala.</p>
+
+                <figure class="foto"><img src="image ia/noticia-2.jpg" alt="Imagen de la noticia sobre las baterías de sodio" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+
+                <div class="cuerpo">
+
+                    <p>Las baterías de sodio se convirtieron en una de las principales novedades de la lista de tecnologías disruptivas elaborada por el MIT Technology Review para 2026. El desarrollo es observado con especial interés porque podría reducir la dependencia mundial del litio, un recurso estratégico cuya demanda aumentó debido a la expansión de los vehículos eléctricos y las energías renovables.</p>
+
+                    <p>El sodio presenta una ventaja fundamental: es mucho más abundante y, en general, menos costoso que el litio. Esta característica podría facilitar la fabricación de baterías destinadas al almacenamiento de electricidad a gran escala, especialmente en sistemas vinculados con parques solares y eólicos. Además, este tipo de baterías ofrece un desempeño potencialmente más estable en temperaturas extremas y puede presentar mejores condiciones de seguridad en determinadas aplicaciones.</p>
+
+                    <p>Aunque todavía enfrenta desafíos relacionados con la densidad energética y la eficiencia, los avances recientes acercan la tecnología a una utilización comercial más amplia.</p>
+
+                    <p>El informe también destaca las baterías de estado sólido, que reemplazan los electrolitos líquidos por materiales sólidos. Esta innovación promete reducir riesgos de incendio, aumentar la autonomía y permitir cargas más rápidas. La combinación de ambas tecnologías podría modificar la estructura del mercado energético y acelerar la transición hacia sistemas de transporte y almacenamiento menos dependientes de combustibles fósiles.</p>
+
+                </div>
+
+                <nav class="pasar" aria-label="Otras noticias">
+
+                    <a class="ant" href="#n1"><small>Anterior</small><strong>MIT: Tecnologías 2026</strong></a>
+
+                    <a class="sig" href="#n3"><small>Siguiente</small><strong>Edición Genética</strong></a>
+
+                </nav>
+
+            </article>
+
+
+
+            <!-- ============ 3 ============ -->
+
+            <article class="nota" id="n3" tabindex="-1">
+
+                <span class="chip">Tecnología</span>
+
+                <h1>La medicina de precisión y la edición genética abren nuevas posibilidades</h1>
+
+                <p class="meta-nota">Salud y bioética</p>
+
+                <p class="lead">El “base editing” permite corregir mutaciones puntuales del ADN, pero también plantea debates éticos.</p>
+
+                <figure class="foto"><img src="image ia/noticia-3.jpg" alt="Imagen de la noticia sobre medicina de precisión y edición genética" loading="lazy" onerror="this.closest('figure').remove()"></figure>
+
+                <div class="cuerpo">
+
+                    <p>La medicina de precisión ocupa un lugar destacado entre las tecnologías que podrían generar mayores cambios durante los próximos años. El MIT Technology Review señaló especialmente los tratamientos genéticos hiperpersonalizados basados en técnicas como el “base editing”, una herramienta capaz de modificar una letra específica del ADN. A diferencia de métodos anteriores, esta tecnología busca corregir mutaciones puntuales sin alterar grandes segmentos del material genético.</p>
+
+                    <p>El objetivo es tratar enfermedades hereditarias poco frecuentes que, hasta hace pocos años, contaban con escasas alternativas terapéuticas. El avance abre la posibilidad de desarrollar tratamientos adaptados al perfil genético y molecular de cada paciente. En lugar de utilizar medicamentos diseñados para grandes grupos de población, la medicina podría avanzar hacia terapias específicas para determinadas mutaciones y características biológicas.</p>
+
+                    <p>Sin embargo, el progreso científico también plantea interrogantes de gran importancia. El informe menciona la puntuación de embriones, una técnica que utiliza información genética para estimar riesgos de enfermedades y ciertos rasgos complejos. Sus posibles aplicaciones generan preocupación por la discriminación, la desigualdad en el acceso y el riesgo de convertir la reproducción en un proceso de selección basado en criterios sociales o comerciales.</p>
+
+                    <p>El desafío será combinar innovación médica, regulación pública y principios bioéticos que protejan la dignidad y los derechos de las personas.</p> Por favor corrige esto para que haya informaciòn en el apartado de contacto. 
